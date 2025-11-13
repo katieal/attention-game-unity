@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8beeaa0417778e04bbd88a1094ec48fd, type: 3}
+  m_Name: R_ChangeGameStateEventSO
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.EventChannel.GameStateTypeRequestEventSO
+  Editor_Description: Invoke to change GameStateMachine current state
+  Editor_EventResponder: GameStateMachine
+  Editor_InvokedBy: []
+  Editor_ResultListeners: []
+  Editor_InvokeRequestWith: (StateType) type
+  Editor_InvokeResultWith: (StateType) newGameStateType
