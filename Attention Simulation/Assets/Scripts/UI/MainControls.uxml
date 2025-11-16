@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 32px; -unity-text-align: middle-left; justify-content: flex-start; flex-direction: row; align-items: center; align-content: flex-start; align-self: auto;">
+        <ui:VisualElement name="class-schedule" style="flex-grow: 0; width: 300px; height: 500px; background-color: rgba(0, 0, 0, 0.11); margin-left: 20px;">
+            <ui:Foldout text="Class Schedule" style="width: 100%; height: 500px;">
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-1" style="margin-left: 4px; width: auto; height: auto; padding-bottom: 0; margin-bottom: 0; padding-top: 0; margin-top: 0; padding-left: 40px; background-color: rgba(0, 0, 0, 0);" />
+                <ui:Label text="Science" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-2" style="margin-left: 4px; width: auto; height: auto; padding-bottom: 0; margin-bottom: 0; padding-top: 0; margin-top: 0; padding-left: 40px;" />
+                <ui:Label text="LanguageArts" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-3" style="margin-left: 4px; width: auto; height: auto; padding-bottom: 0; margin-bottom: 0; padding-top: 0; margin-top: 0; padding-left: 40px;" />
+                <ui:Label text="History" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-4" style="margin-left: 4px; width: auto; height: auto; padding-bottom: 0; margin-bottom: 0; padding-top: 0; margin-top: 0; padding-left: 40px;" />
+            </ui:Foldout>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 0; width: 1270px; height: 500px; justify-content: flex-end;">
+            <ui:Button text="Next" name="next-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

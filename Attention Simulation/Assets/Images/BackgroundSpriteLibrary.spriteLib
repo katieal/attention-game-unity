@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrarySourceAsset
+  m_Library:
+  - m_Name: School
+    m_Hash: 1043521421
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Math
+      m_Hash: 152415091
+      m_Sprite: {fileID: 21300000, guid: 4f5fbc1ccb457ec45986ccbdcfbecba9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 4f5fbc1ccb457ec45986ccbdcfbecba9, type: 3}
+    - m_Name: Science
+      m_Hash: 682231860
+      m_Sprite: {fileID: 21300000, guid: 1df6cb3b91fb7284aacee35a083c8b07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 1df6cb3b91fb7284aacee35a083c8b07, type: 3}
+    - m_Name: LanguageArts
+      m_Hash: 320515360
+      m_Sprite: {fileID: 21300000, guid: 25aee6649cd29b44c9c732d9029a4ca2, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 25aee6649cd29b44c9c732d9029a4ca2, type: 3}
+    - m_Name: History
+      m_Hash: 671566295
+      m_Sprite: {fileID: 21300000, guid: 17b1eba6ce148264aa921f7fc362cd52, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 17b1eba6ce148264aa921f7fc362cd52, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Home
+    m_Hash: 300196846
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Bedroom
+      m_Hash: 698907341
+      m_Sprite: {fileID: 21300000, guid: a44bfa941d2e117408524d60f0c7eeb7, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: a44bfa941d2e117408524d60f0c7eeb7, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638988921047007706
+  m_Version: 1

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd1688663bcd6442adc39399c4edc74, type: 3}
+  m_Name: SleepEventSO
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.EventChannel.VoidEventSO
+  Editor_Description: Invoked when player chooses to sleep for the night. Time will
+    change to day start time and day is updated if needed.
+  Editor_InvokedBy: []
+  Editor_Listeners:
+  - DayManager
