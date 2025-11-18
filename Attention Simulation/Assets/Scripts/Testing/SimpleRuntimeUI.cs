@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Emyra.Simulator.Testing
+namespace Emyra.FocusGame.Testing
 {
     public class SimpleRuntimeUI : MonoBehaviour
     {

@@ -1,34 +1,34 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement data-source-type="Emyra.Simulator.UI.OverlayDataSource, Assembly-CSharp" style="flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Oswald-Bold.ttf?fileID=12800000&amp;guid=c9f6d0e7bc8541498c9a4799ba184ede&amp;type=3#Oswald-Bold&quot;); -unity-font-style: normal; -unity-text-align: middle-left; font-size: 60%; justify-content: flex-start; align-items: center;">
+    <ui:VisualElement data-source-type="Emyra.FocusGame.UI.OverlayDataSource, Assembly-CSharp" style="flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Oswald-Bold.ttf?fileID=12800000&amp;guid=c9f6d0e7bc8541498c9a4799ba184ede&amp;type=3#Oswald-Bold&quot;); -unity-font-style: normal; -unity-text-align: middle-left; font-size: 60%; justify-content: flex-start; align-items: center;">
         <ui:VisualElement name="VisualElement" style="flex-grow: 0; align-items: flex-start; flex-direction: row; justify-content: space-around; align-content: flex-start; align-self: auto; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Oswald-Bold.ttf?fileID=12800000&amp;guid=c9f6d0e7bc8541498c9a4799ba184ede&amp;type=3#Oswald-Bold&quot;); top: 0; flex-basis: auto; width: 100%; height: 6%; max-height: 8%; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Violet%20Theme%20Ui/Buttons/Misc/80x80%20Background.png?fileID=4211293783942383924&amp;guid=a64f98d7a00501442ae40845562f1c20&amp;type=3#80x80 Background_0&quot;); transform-origin: top; position: relative; left: 0; right: 0; bottom: auto; -unity-text-align: middle-left; flex-shrink: 0; min-height: 5%; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
             <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                <ui:Label text="Week" name="WeekLabel" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" />
-                <ui:Label name="WeekText" double-click-selects-word="false" triple-click-selects-line="false" emoji-fallback-support="false" text="5" style="width: 40px;">
+                <ui:Label text="Week" name="week-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" />
+                <ui:Label name="week-text" double-click-selects-word="false" triple-click-selects-line="false" emoji-fallback-support="false" text="5" style="width: 40px;">
                     <Bindings>
                         <ui:DataBinding property="text" data-source-path="Week" binding-mode="ToTarget" />
                     </Bindings>
                 </ui:Label>
             </ui:VisualElement>
-            <ui:Label text="Thursday" name="DayText" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" style="width: 200px; -unity-text-align: middle-center;">
+            <ui:Label text="Thursday" name="day-text" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" style="width: 200px; -unity-text-align: middle-center;">
                 <Bindings>
                     <ui:DataBinding property="text" data-source-path="Day" binding-mode="ToTarget" />
                 </Bindings>
             </ui:Label>
-            <ui:Label text="24:00" name="TimeText" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" style="width: 150px; -unity-text-align: middle-center;">
+            <ui:Label text="24:00" name="time-text" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" style="width: 150px; -unity-text-align: middle-center;">
                 <Bindings>
                     <ui:DataBinding property="text" data-source-path="Time" binding-mode="ToTarget" />
                 </Bindings>
             </ui:Label>
-            <ui:Label text="Location" name="LocationText" triple-click-selects-line="false" emoji-fallback-support="false" double-click-selects-word="false" style="width: 220px; -unity-text-align: middle-center;">
+            <ui:Label text="Place" name="place-text" triple-click-selects-line="false" emoji-fallback-support="false" double-click-selects-word="false" style="width: 220px; -unity-text-align: middle-center;">
                 <Bindings>
-                    <ui:DataBinding property="text" data-source-path="Location" binding-mode="ToTarget" />
+                    <ui:DataBinding property="text" data-source-path="Place" binding-mode="ToTarget" />
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>
-        <ui:VisualElement enabled="true" name="ClassNameElement" style="flex-grow: 0; width: 350px; height: 50px; background-color: rgb(255, 255, 255); top: 0; left: 0; right: 0; justify-content: center; visibility: visible; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
-            <ui:Label text="Subject" name="ClassNameLabel" emoji-fallback-support="false" triple-click-selects-line="false" double-click-selects-word="false" enabled="true" style="-unity-text-align: middle-center;">
+        <ui:VisualElement enabled="true" style="flex-grow: 0; width: 350px; height: 50px; background-color: rgb(255, 255, 255); top: 0; left: 0; right: 0; justify-content: center; visibility: visible; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;">
+            <ui:Label text="Room" name="room-text" emoji-fallback-support="false" triple-click-selects-line="false" double-click-selects-word="false" enabled="true" style="-unity-text-align: middle-center;">
                 <Bindings>
-                    <ui:DataBinding property="text" data-source-path="Subject" binding-mode="ToTarget" />
+                    <ui:DataBinding property="text" data-source-path="Room" binding-mode="ToTarget" />
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>

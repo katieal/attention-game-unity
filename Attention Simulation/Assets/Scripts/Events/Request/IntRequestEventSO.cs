@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Emyra.Simulator.EventChannel
+namespace Emyra.FocusGame.EventChannel
 {
     [CreateAssetMenu(fileName = "IntIntRequestEventSO", menuName = "Events/Request/Int")]
     public class IntRequestEventSO : GenericGenericRequestEventSO<int, int> { }

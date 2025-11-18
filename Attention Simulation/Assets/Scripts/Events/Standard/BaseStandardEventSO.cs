@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Emyra.Simulator.EventChannel
+namespace Emyra.FocusGame.EventChannel
 {
     /// <summary>
     /// Standard Event Channel. Can be invoked with 0, 1, or 2 args.

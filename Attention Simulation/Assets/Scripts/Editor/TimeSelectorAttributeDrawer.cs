@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 
-namespace Emyra.Simulator.GameData
+namespace Emyra.FocusGame.GameData
 {
     public class TimeSelectorAttributeDrawer : OdinAttributeDrawer<TimeSelectorAttribute, int>
     {

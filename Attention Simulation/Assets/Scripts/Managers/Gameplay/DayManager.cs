@@ -1,9 +1,9 @@
-using Emyra.Simulator.EventChannel;
-using Emyra.Simulator.GameData;
+using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.GameData;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Emyra.Simulator.Managers
+namespace Emyra.FocusGame.Managers
 {
 
     public enum DayString { Monday = 1, Tuesday = 2, Wednesday, Thursday, Friday, Saturday, Sunday }

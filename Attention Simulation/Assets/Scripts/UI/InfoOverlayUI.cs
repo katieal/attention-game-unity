@@ -1,6 +1,6 @@
-using Emyra.Simulator.EventChannel;
-using Emyra.Simulator.GameData;
-using Emyra.Simulator.Managers;
+using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.GameData;
+using Emyra.FocusGame.Managers;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using System;
@@ -8,8 +8,9 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
+using LocationInfo = Emyra.FocusGame.GameData.LocationInfo;
 
-namespace Emyra.Simulator.UI
+namespace Emyra.FocusGame.UI
 {
     public class InfoOverlayUI : MonoBehaviour
     {
@@ -24,9 +25,7 @@ namespace Emyra.Simulator.UI
         [FoldoutGroup("Events/Listening to Events")]
         [SerializeField] private IntEventSO _timeChangedEvent;
         [FoldoutGroup("Events/Listening to Events")]
-        [SerializeField] private LocationEventSO _locationChangedEvent;
-        [FoldoutGroup("Events/Listening to Events")]
-        [SerializeField] private VoidActivityEventSO _activityChangedEvent;
+        [SerializeField] private LocationInfoEventSO _locationChangedEvent;
 
         private void Awake()
         {
@@ -40,15 +39,14 @@ namespace Emyra.Simulator.UI
             _changeDayEvent.OnResultEvent += OnDayChanged;
             _timeChangedEvent.OnInvokeEvent += OnTimeChanged;
             _locationChangedEvent.OnInvokeEvent += OnLocationChanged;
-            _activityChangedEvent.OnResultEvent += OnActivityChanged;
         }
+
         private void OnDisable()
         {
             _weekChangedEvent.OnInvokeEvent -= OnWeekChanged;
             _changeDayEvent.OnResultEvent -= OnDayChanged;
             _timeChangedEvent.OnInvokeEvent -= OnTimeChanged;
             _locationChangedEvent.OnInvokeEvent -= OnLocationChanged;
-            _activityChangedEvent.OnResultEvent -= OnActivityChanged;
         }
 
         private void Start()
@@ -57,8 +55,8 @@ namespace Emyra.Simulator.UI
             OverlayData.Week = DayManager.Instance.Week;
             OverlayData.Day = GetDayString(DayManager.Instance.Day);
             OverlayData.Time = GetTimeString(DayManager.Instance.Time);
-            OverlayData.Location = "Home";
-            OverlayData.Subject = "History";
+            OverlayData.Place = "Home";
+            OverlayData.Room = "History";
         }
 
         #region Callbacks
@@ -74,29 +72,19 @@ namespace Emyra.Simulator.UI
         {
             OverlayData.Time = GetTimeString(time);
         }
-        private void OnLocationChanged(Location location)
+        private void OnLocationChanged(LocationInfo info)
         {
-            OverlayData.Location = location.ToString();
-        }
-        private void OnActivityChanged(ActivityName activity)
-        {
-            // not filtering out classes for now
-            OverlayData.Subject = activity.ToString();
+            OverlayData.Place = info.Place.ToString();
 
-
-            //// if switching from no subject to subject or vice versa
-            //if (OverlayData.Subject.IsNullOrWhitespace() ^ subject.IsNullOrWhitespace())
-            //{
-            //    // get subject label
-            //    VisualElement ele = UIDocument.rootVisualElement.Q("ClassNameElement");
-
-            //    // hide subject label if leaving school
-            //    if (subject.IsNullOrWhitespace()) { ele.visible = false; }
-            //    // show subject label if entering school
-            //    else {  ele.visible = true; }
-            //}
-
-            //OverlayData.Subject = subject;
+            // if player is in a classroom, room label displays current subject instead of room name
+            if (info.Room == Room.Classroom)
+            {
+                OverlayData.Room = GetSubjectString(info.Subject);
+            }
+            else
+            {
+                OverlayData.Room = info.Room.ToString();
+            }
         }
         #endregion
 
@@ -113,6 +101,23 @@ namespace Emyra.Simulator.UI
             int minutes = time % 60;
             return string.Format("{0:00}:{1:00}", hours, minutes);
         }
+
+        // convert subject enum into display string
+        private string GetSubjectString(Subject subject)
+        {
+            string name = subject.ToString();
+
+            // excluding the first character, insert a space before each capital letter
+            for (int i = 1; i < name.Length; i++)
+            {
+                if (Char.IsUpper(name[i]))
+                {
+                    name.Insert(i, " ");
+                }
+            }
+
+            return name;
+        }
     }
 
     public class OverlayDataSource : INotifyBindablePropertyChanged
@@ -120,8 +125,8 @@ namespace Emyra.Simulator.UI
         private int _week;
         private string _day;
         private string _time;
-        private string _location;
-        private string _subject;
+        private string _place;
+        private string _room;
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
@@ -162,25 +167,25 @@ namespace Emyra.Simulator.UI
         }
 
         [CreateProperty]
-        public string Location
+        public string Place
         {
-            get => _location;
+            get => _place;
             set
             {
-                if (_location == value) return;
-                _location = value;
+                if (_place == value) return;
+                _place = value;
                 Notify();
             }
         }
 
         [CreateProperty]
-        public string Subject
+        public string Room
         {
-            get => _subject;
+            get => _room;
             set
             {
-                if (_subject == value) return;
-                _subject = value;
+                if (_room == value) return;
+                _room = value;
                 Notify();
             }
         }

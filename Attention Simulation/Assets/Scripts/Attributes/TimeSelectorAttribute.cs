@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Emyra.Simulator.GameData
+namespace Emyra.FocusGame.GameData
 {
     public class TimeSelectorAttribute : Attribute { }
 }

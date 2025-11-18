@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Emyra.Simulator.Managers.StateMachine
+namespace Emyra.FocusGame.Managers.StateMachine
 {
     public enum StateType { None = -1, Start = 0, Load, Pause, Run }
 

@@ -1,9 +1,9 @@
-using Emyra.Simulator.EventChannel;
+using Emyra.FocusGame.EventChannel;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Emyra.Simulator.UI
+namespace Emyra.FocusGame.UI
 {
     public class StartMenuUI : MonoBehaviour
     {

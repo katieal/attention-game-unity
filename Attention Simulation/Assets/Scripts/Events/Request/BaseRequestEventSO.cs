@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Emyra.Simulator.EventChannel
+namespace Emyra.FocusGame.EventChannel
 {
     /// <summary>
     /// Class to combine two related Standard Events for organization and readability.

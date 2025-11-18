@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355abb41ee9131040b73de98cbd27a6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f6db3c363b07724ea104e475c7ffa62, type: 3}
   m_Name: LocationChangedEventSO
-  m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.LocationEventSO
-  Editor_Description: invoked when location changes
-  Editor_InvokedBy: []
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.EventChannel.LocationInfoEventSO
+  Editor_Description: invoked when user's location changes
+  Editor_InvokedBy:
+  - GameplayManager
   Editor_Listeners: []
-  Editor_InvokeWith: (location) location
+  Editor_InvokeWith: (LocationInfo) info

@@ -326,6 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 334072953}
+  - component: {fileID: 334072954}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -347,9 +348,30 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 625947192}
-  - {fileID: 2075843871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &334072954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334072952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d652c9a85f1138f4997517df9ca124fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Managers.GameplayManager
+  Schedule:
+  - {fileID: 11400000, guid: 3a720ccf6cf498942b429bbb3fbd4d20, type: 2}
+  - {fileID: 11400000, guid: e019bae6b42d128429c9d86bfdb0ac8e, type: 2}
+  - {fileID: 11400000, guid: 47ef28719a8400441957fa039d330718, type: 2}
+  - {fileID: 11400000, guid: 11af75c1baee444478e7e1efdf320747, type: 2}
+  - {fileID: 11400000, guid: b88992b570392cb468510cfbc16d8708, type: 2}
+  - {fileID: 11400000, guid: 415c011a1b1a90d41a55acb5ca70b1d2, type: 2}
+  _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
+  _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
+  _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
 --- !u!1 &608880745
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1009,6 @@ MonoBehaviour:
   _changeDayEvent: {fileID: 11400000, guid: 3a35d45495d7a764384fbd4569a257ba, type: 2}
   _timeChangedEvent: {fileID: 11400000, guid: 077765e67fb9d9445b4e2f34f143c1bc, type: 2}
   _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
-  _activityChangedEvent: {fileID: 11400000, guid: 33570a9db6beae44481cb9b0c3344c83, type: 2}
 --- !u!1 &1353087013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1131,7 @@ GameObject:
   - component: {fileID: 1680077683}
   - component: {fileID: 1680077682}
   - component: {fileID: 1680077681}
+  - component: {fileID: 1680077685}
   m_Layer: 5
   m_Name: BackgroundCanvas
   m_TagString: Untagged
@@ -1200,6 +1222,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1680077685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680077680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6c827f4d9df6449a670ccabd38a594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.UI.BackgroundUI
+  _background: {fileID: 1180297300}
+  _spriteLibrary: {fileID: 1180297302}
+  _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
 --- !u!1 &1747600646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1405,7 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &2075843870
+--- !u!1 &1960056629
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1376,51 +1413,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2075843871}
-  - component: {fileID: 2075843872}
+  - component: {fileID: 1960056631}
+  - component: {fileID: 1960056630}
   m_Layer: 0
-  m_Name: ActivityManager
+  m_Name: GameData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2075843871
+--- !u!114 &1960056630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960056629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1f37d4c0f2f4f4b8e2a9c58cc594a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.GameData.ActivityDatabase
+  _activities:
+  - {fileID: 11400000, guid: b66e3190b864db147a0b261ab6cb8719, type: 2}
+  - {fileID: 11400000, guid: e4bb5b95cf86c3344a92a00bc1f4368f, type: 2}
+  - {fileID: 11400000, guid: 5c8747d0cfaf66e4ca3e1d682980fb56, type: 2}
+  - {fileID: 11400000, guid: acf88c700224cd94489c6c065e5016fa, type: 2}
+  - {fileID: 11400000, guid: e5eedec21dd7acf49bbe6f05b62e8b82, type: 2}
+  - {fileID: 11400000, guid: d628b85c2d9d71b4f8723608c599fddf, type: 2}
+--- !u!4 &1960056631
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075843870}
+  m_GameObject: {fileID: 1960056629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 334072953}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2075843872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075843870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d652c9a85f1138f4997517df9ca124fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.Managers.ActivityManager
-  Schedule:
-  - {fileID: 11400000, guid: 462c08dbd9faba74eba18a1b7568cf97, type: 2}
-  - {fileID: 11400000, guid: e019bae6b42d128429c9d86bfdb0ac8e, type: 2}
-  - {fileID: 11400000, guid: 47ef28719a8400441957fa039d330718, type: 2}
-  - {fileID: 11400000, guid: 11af75c1baee444478e7e1efdf320747, type: 2}
-  - {fileID: 11400000, guid: b88992b570392cb468510cfbc16d8708, type: 2}
-  - {fileID: 11400000, guid: 04691c228784e0b4b9751215e709471d, type: 2}
-  _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
-  _nextActivityEvent: {fileID: 11400000, guid: 33570a9db6beae44481cb9b0c3344c83, type: 2}
 --- !u!1 &2092246188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,7 +1525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.UI.MainControlsUI
   ControlsDocument: {fileID: 2092246189}
-  _nextActivityEvent: {fileID: 11400000, guid: 33570a9db6beae44481cb9b0c3344c83, type: 2}
+  _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
+  _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
+  _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
 --- !u!1 &2095576830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1602,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1747600647}
   - {fileID: 334072953}
+  - {fileID: 1960056631}
   - {fileID: 1928665120}
   - {fileID: 1353087016}
   - {fileID: 608880746}

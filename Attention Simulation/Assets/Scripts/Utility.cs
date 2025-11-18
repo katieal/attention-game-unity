@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Emyra.Simulator
+namespace Emyra.FocusGame
 {
     /// <summary>
     /// Collection of static utility methods

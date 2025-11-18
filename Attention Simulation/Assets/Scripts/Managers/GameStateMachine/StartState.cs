@@ -1,10 +1,10 @@
-using Emyra.Simulator.EventChannel;
+using Emyra.FocusGame.EventChannel;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-namespace Emyra.Simulator.Managers.StateMachine
+namespace Emyra.FocusGame.Managers.StateMachine
 {
     /// <summary>
     /// Starting state for the game

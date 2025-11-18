@@ -1,9 +1,9 @@
-using Emyra.Simulator.EventChannel;
+using Emyra.FocusGame.EventChannel;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Emyra.Simulator.Managers.StateMachine
+namespace Emyra.FocusGame.Managers.StateMachine
 {
     public class GameStateMachine : SerializedMonoBehaviour
     {

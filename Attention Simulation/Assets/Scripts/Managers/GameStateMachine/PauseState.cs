@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Emyra.Simulator.Managers.StateMachine
+namespace Emyra.FocusGame.Managers.StateMachine
 {
     /// <summary>
     /// Pause all time-based operations during pause menu
