@@ -231,12 +231,12 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _stateDict
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[Emyra.Simulator.Managers.StateMachine.StateType,
-        Assembly-CSharp],[Emyra.Simulator.Managers.StateMachine.IGameState, Assembly-CSharp]],
+      Data: 0|System.Collections.Generic.Dictionary`2[[Emyra.FocusGame.Managers.StateMachine.StateType,
+        Assembly-CSharp],[Emyra.FocusGame.Managers.StateMachine.IGameState, Assembly-CSharp]],
         mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Emyra.Simulator.Managers.StateMachine.StateType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Emyra.FocusGame.Managers.StateMachine.StateType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -338,8 +338,6 @@ MonoBehaviour:
   _changeDayEvent: {fileID: 11400000, guid: 3a35d45495d7a764384fbd4569a257ba, type: 2}
   _addTimeEvent: {fileID: 11400000, guid: b105ff6ed94ca9f45a3b50daf582d466, type: 2}
   _sleepEvent: {fileID: 11400000, guid: b255b8a7ae19e9848bb110990ac30465, type: 2}
-  _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
-  _subjectChangedEvent: {fileID: 11400000, guid: ef9658bb42251094e82d76fef17fd2f6, type: 2}
 --- !u!4 &1109898994
 Transform:
   m_ObjectHideFlags: 0

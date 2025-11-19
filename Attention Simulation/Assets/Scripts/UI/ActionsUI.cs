@@ -10,6 +10,6 @@ namespace Emyra.FocusGame.UI
     {
         [Title("Components")]
         public GameObject ButtonPanel;
-        public Dictionary<ActivityType, Button> ActionButtons = new Dictionary<ActivityType, Button>();
+        public Dictionary<ActivityName, Button> ActionButtons = new Dictionary<ActivityName, Button>();
     }
 }

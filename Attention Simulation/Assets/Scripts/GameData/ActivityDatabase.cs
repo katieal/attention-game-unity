@@ -30,16 +30,42 @@ namespace Emyra.FocusGame.GameData
         #endregion
 
 
-        public string GetDisplayName(ActivityType activity)
+        public string GetDisplayName(ActivityName activity)
         {
-            return _activities.Find(x => x.Activity == activity).DisplayName;
+            if (FindActivity(activity, out ActivitySO activitySO)) 
+            { 
+                return activitySO.DisplayName;
+            }
+            else { return null; }
         }
 
-        public string GetButtonName(ActivityType activity)
+        public string GetButtonName(ActivityName activity)
         {
-            ActivitySO activitySO = _activities.Find(x => x.Activity == activity);
-            if (activitySO != null) { return activitySO.ButtonName; }
-            return null;
+            if (FindActivity(activity, out ActivitySO activitySO))
+            {
+                return activitySO.ButtonName;
+            }
+            else { return null; }
+        }
+
+        /// <summary>
+        /// Returns true if activity has a fixed duration
+        /// </summary>
+        /// <param name="activity"></param>
+        /// <returns></returns>
+        public bool CheckDuration(ActivityName activity)
+        {
+            if (FindActivity(activity, out ActivitySO activitySO))
+            {
+                return activitySO.HasFixedDuration;
+            }
+            else { return false; }
+        }
+
+        private bool FindActivity(ActivityName activity, out ActivitySO activitySO)
+        {
+            activitySO = _activities.Find(x => x.Activity == activity);
+            return (activitySO != null);
         }
     }
 }

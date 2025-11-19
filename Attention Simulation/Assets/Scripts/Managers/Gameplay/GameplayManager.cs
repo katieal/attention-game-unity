@@ -17,11 +17,15 @@ namespace Emyra.FocusGame.Managers
         [TitleGroup("Events")]
         [FoldoutGroup("Events/Listening to Events")]
         [SerializeField] private VoidEventSO _startGameEvent;
-        [SerializeField] private ActivityTypeEventSO _activitySelectedEvent;
+        [SerializeField] private ActivityIntEventSO _activitySelectedEvent;
         [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
+        [SerializeField] private IntEventSO _addTimeEvent;
+        [SerializeField] private IntEventSO _setTimeEvent;
+        [SerializeField] private VoidEventSO _sleepEvent;
 
-        private int _currentIndex;
+        // current index in schedule
+        private int _cIndex;
 
         private void OnEnable()
         {
@@ -36,27 +40,57 @@ namespace Emyra.FocusGame.Managers
 
         private void OnStartGame()
         {
-            _locationChangedEvent.InvokeEvent(Schedule[_currentIndex].GetInfo());
+            RestartSchedule();
         }
 
-        private void OnActivitySelected(ActivityType activity)
+        // send -1 for default duration
+        private void OnActivitySelected(ActivityName activity, int duration)
         {
-
-            // using None as a temp next button
-            if (activity == ActivityType.None) { SendNextLocation(); }
+            // activity specific logic
+            if (activity == ActivityName.Sleep)
+            {
+                // sleep until the start of the next/current morning
+                _sleepEvent.InvokeEvent();
+                RestartSchedule();
+            }
+            else if (activity == ActivityName.LeaveForSchool)
+            {
+                // set time to school start time
+                _setTimeEvent.InvokeEvent(DayManager.Instance.SchoolStartTime);
+                SendNextLocation();
+            }
+            // classroom activities always last 1 hr (the entire duration)
+            else if (Schedule[_cIndex].Room == Room.Classroom)
+            {
+                // advance time by 60 mins
+                _addTimeEvent.InvokeEvent(60); // keeping duration hard coded here for now
+                SendNextLocation();
+            }
+            else
+            {
+                // advance time
+                _addTimeEvent.InvokeEvent(duration);
+            }
         }
         
+        private void RestartSchedule()
+        {
+            _cIndex = 0;
+            // broadcast next location
+            _locationChangedEvent.InvokeEvent(Schedule[_cIndex].GetInfo());
+        }
+
         private void SendNextLocation()
         {
-            if (_currentIndex + 1 == Schedule.Length)
+            if (_cIndex + 1 == Schedule.Length)
             {
                 Debug.Log("end of schedule!");
                 return;
             }
 
-            _currentIndex++;
+            _cIndex++;
             // broadcast next location
-            _locationChangedEvent.InvokeEvent(Schedule[_currentIndex].GetInfo());
+            _locationChangedEvent.InvokeEvent(Schedule[_cIndex].GetInfo());
         }
 
 

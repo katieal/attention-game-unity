@@ -15,3 +15,5 @@ MonoBehaviour:
   Activity: 1
   DisplayName: Pay Attention
   ButtonName: listenyes-button
+  HasFixedDuration: 1
+  DefaultDuration: 0

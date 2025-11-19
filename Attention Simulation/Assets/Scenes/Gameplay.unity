@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Managers.GameplayManager
   Schedule:
-  - {fileID: 11400000, guid: 3a720ccf6cf498942b429bbb3fbd4d20, type: 2}
+  - {fileID: 11400000, guid: cbca0bbb67433e649984fa0803e6163c, type: 2}
   - {fileID: 11400000, guid: e019bae6b42d128429c9d86bfdb0ac8e, type: 2}
   - {fileID: 11400000, guid: 47ef28719a8400441957fa039d330718, type: 2}
   - {fileID: 11400000, guid: 11af75c1baee444478e7e1efdf320747, type: 2}
@@ -372,6 +372,9 @@ MonoBehaviour:
   _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
   _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
   _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
+  _addTimeEvent: {fileID: 11400000, guid: b105ff6ed94ca9f45a3b50daf582d466, type: 2}
+  _setTimeEvent: {fileID: 11400000, guid: 6831ae0f68fcafa4b9160d3ae9c63e30, type: 2}
+  _sleepEvent: {fileID: 11400000, guid: b255b8a7ae19e9848bb110990ac30465, type: 2}
 --- !u!1 &608880745
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,8 +452,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.Managers.DayManager
   <Week>k__BackingField: 1
   <Day>k__BackingField: 1
-  <Time>k__BackingField: 330
-  _dayStartTime: 360
+  <Time>k__BackingField: 0
+  _dayStartTime: 330
+  SchoolStartTime: 420
+  _setTimeEvent: {fileID: 11400000, guid: 6831ae0f68fcafa4b9160d3ae9c63e30, type: 2}
   _addTimeEvent: {fileID: 11400000, guid: b105ff6ed94ca9f45a3b50daf582d466, type: 2}
   _sleepEvent: {fileID: 11400000, guid: b255b8a7ae19e9848bb110990ac30465, type: 2}
   _weekChangedEvent: {fileID: 11400000, guid: d7e7c8e36d3f54545b8ac9ebcc4bb2f5, type: 2}
@@ -1438,9 +1443,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b66e3190b864db147a0b261ab6cb8719, type: 2}
   - {fileID: 11400000, guid: e4bb5b95cf86c3344a92a00bc1f4368f, type: 2}
   - {fileID: 11400000, guid: 5c8747d0cfaf66e4ca3e1d682980fb56, type: 2}
+  - {fileID: 11400000, guid: 50a8b7823f65c6e46b66e3775e846bac, type: 2}
   - {fileID: 11400000, guid: acf88c700224cd94489c6c065e5016fa, type: 2}
-  - {fileID: 11400000, guid: e5eedec21dd7acf49bbe6f05b62e8b82, type: 2}
   - {fileID: 11400000, guid: d628b85c2d9d71b4f8723608c599fddf, type: 2}
+  - {fileID: 11400000, guid: 3f2f8a332f6e8e544849ec089017d6ab, type: 2}
 --- !u!4 &1960056631
 Transform:
   m_ObjectHideFlags: 0
@@ -1467,6 +1473,7 @@ GameObject:
   - component: {fileID: 2092246190}
   - component: {fileID: 2092246189}
   - component: {fileID: 2092246191}
+  - component: {fileID: 2092246192}
   m_Layer: 5
   m_Name: ControlsUI
   m_TagString: Untagged
@@ -1525,9 +1532,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.UI.MainControlsUI
   ControlsDocument: {fileID: 2092246189}
+  _durationPopup: {fileID: 2092246192}
   _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
   _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
   _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
+--- !u!114 &2092246192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092246188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a3790589153b6419282e202d0ae177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.UI.DurationPopupUI
+  ControlsDocument: {fileID: 2092246189}
+  OnSubmitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2095576830
 GameObject:
   m_ObjectHideFlags: 0

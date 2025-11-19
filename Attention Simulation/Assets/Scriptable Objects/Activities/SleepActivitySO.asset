@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf711c94ec126514cb93ddffd0b8a525, type: 3}
-  m_Name: tempnext
+  m_Name: SleepActivitySO
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.GameData.ActivitySO
-  Activity: 0
-  DisplayName: 
-  ButtonName: next-button
+  Activity: 128
+  DisplayName: Sleep
+  ButtonName: sleep-button
+  HasFixedDuration: 1
+  DefaultDuration: 0

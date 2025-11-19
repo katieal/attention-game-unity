@@ -13,21 +13,22 @@ namespace Emyra.FocusGame.UI
 {
     public class MainControlsUI : MonoBehaviour
     {
+        [Title("References")]
         public UIDocument ControlsDocument;
-        public SubjectColorDataSource ColorData;
+        [SerializeField] private DurationPopupUI _durationPopup;
+
 
         [TitleGroup("Events")]
         [FoldoutGroup("Events/Listening to Events")]
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
         [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private VoidEventSO _startGameEvent; // temp (debug only)
-        [SerializeField] private ActivityTypeEventSO _activitySelectedEvent;
+        [SerializeField] private ActivityIntEventSO _activitySelectedEvent;
 
-        private VisualElement _scheduleElement;
-        private Dictionary<ActivityType, Button> _buttonDict;
 
-        private Color _highlightColor;
-        private Color _defaultColor;
+        private Dictionary<ActivityName, Button> _buttonDict;
+        // var for readability
+        private ActivityDatabase _activityDb;
 
         // DEBUG (TEMP)
         private Button _startButton;
@@ -37,13 +38,8 @@ namespace Emyra.FocusGame.UI
             #region Debug
             _startButton = ControlsDocument.rootVisualElement.Q("start-button") as Button;
             #endregion
-            ColorData = new SubjectColorDataSource();
-            _buttonDict = new Dictionary<ActivityType, Button>();
-            _highlightColor = new Color(255, 234, 0, 172);
-            _defaultColor = new Color(0, 0, 0, 0);
 
-            _scheduleElement = ControlsDocument.rootVisualElement.Q("class-schedule");
-            _scheduleElement.dataSource = ColorData;
+            _buttonDict = new Dictionary<ActivityName, Button>();
         }
 
         private void OnEnable()
@@ -52,8 +48,14 @@ namespace Emyra.FocusGame.UI
             _startButton.RegisterCallback<ClickEvent>(StartGame);
             #endregion
 
+            _activityDb = ActivityDatabase.Instance;
+            // hide duration popup if needed
+            if (_durationPopup.enabled) { _durationPopup.Close(); }
+            
+            // bind activity button callbacks
             InitButtons();
 
+            // subscribe to events
             _locationChangedEvent.OnInvokeEvent += OnLocationChanged;
         }
         private void OnDisable()
@@ -62,11 +64,13 @@ namespace Emyra.FocusGame.UI
             _startButton.UnregisterCallback<ClickEvent>(StartGame);
             #endregion
 
-            foreach(ActivityType activity in _buttonDict.Keys)
+            // unbind activity button callbacks
+            foreach(ActivityName activity in _buttonDict.Keys)
             {
-                _buttonDict[activity].UnregisterCallback<ClickEvent, ActivityType>(OnActivityClicked);
+                _buttonDict[activity].UnregisterCallback<ClickEvent, ActivityName>(OnActivityClicked);
             }
 
+            // unsubscribe from events
             _locationChangedEvent.OnInvokeEvent -= OnLocationChanged;
         }
 
@@ -74,21 +78,18 @@ namespace Emyra.FocusGame.UI
         {
             _buttonDict.Clear();
 
-            // temp var for readability
-            ActivityDatabase db = GameData.ActivityDatabase.Instance;
-
             // get all the buttons for each activity type and store them in a dictionary
-            foreach (ActivityType activity in Enum.GetValues(typeof(ActivityType)))
+            foreach (ActivityName activity in Enum.GetValues(typeof(ActivityName)))
             {
-                string name = db.GetButtonName(activity);
+                string name = _activityDb.GetButtonName(activity);
                 // skip if activity does not have matching button name
                 if (name == null) { continue; }
 
-                var ele = ControlsDocument.rootVisualElement.Q(db.GetButtonName(activity));
+                var ele = ControlsDocument.rootVisualElement.Q(name);
                 if (ele != null)
                 {
                     Button button = ele as Button;
-                    button.RegisterCallback<ClickEvent, ActivityType>(OnActivityClicked, activity);
+                    button.RegisterCallback<ClickEvent, ActivityName>(OnActivityClicked, activity);
                     _buttonDict.Add(activity, button);
                 }
             }
@@ -104,130 +105,54 @@ namespace Emyra.FocusGame.UI
         }
         #endregion
 
-
         private void OnLocationChanged(LocationInfo info)
         {
             // update activity buttons shown
-            foreach (ActivityType activity in _buttonDict.Keys)
+            foreach (ActivityName activity in _buttonDict.Keys)
             {
+                // check if activity is enabled for given location
                 if ((info.Activities & activity) == activity)
                 {
-                    _buttonDict[activity].visible = true;
-                    _buttonDict[activity].SetEnabled(true);
+                    // enable activity's button if not already enabled
+                    if (!_buttonDict[activity].enabledSelf)
+                    {
+                        _buttonDict[activity].SetEnabled(true);
+                        _buttonDict[activity].style.display = DisplayStyle.Flex;
+                    }
                 }
                 else
                 {
-                    _buttonDict[activity].visible = false;
+                    // disable button and remove it from layout
                     _buttonDict[activity].SetEnabled(false);
+                    _buttonDict[activity].style.display = DisplayStyle.None;
                 }
-            }
-
-            // if in school, highlight corresponding subject in class schedule overlay
-            if (info.Room == Room.Classroom) 
-            { 
-                _scheduleElement.visible = true;
-                UpdateScheduleColors(info.Subject); 
-            }
-            else
-            {
-                // if not in classroom, hide schedule overlay
-                _scheduleElement.visible = false;
             }
         }
 
         #region Activity Buttons
-
-        private void OnActivityClicked(ClickEvent evt, ActivityType activity)
+        private void OnActivityClicked(ClickEvent evt, ActivityName activity)
         {
-            Debug.Log(activity.ToString());
-
-            _activitySelectedEvent.InvokeEvent(activity);
+            // if activity has a fixed duration, execute it on click
+            if (_activityDb.CheckDuration(activity))
+            {
+                // send -1 for default duration
+                _activitySelectedEvent.InvokeEvent(activity, -1);
+            }
+            else
+            {
+                // else prompt user for duration 
+                _durationPopup.OnSubmitEvent.AddListener((mins) => SendActivityWithDuration(mins, activity));
+                _durationPopup.Show();
+            }
         }
 
-        #endregion
-
-        #region Schedule Colors
-        private void UpdateScheduleColors(Subject subject)
+        private void SendActivityWithDuration(int minutes, ActivityName activity)
         {
-            ResetColors();
-
-            if (subject == Subject.Math) { ColorData.Subject1 = _highlightColor; }
-            else if (subject == Subject.Science) { ColorData.Subject2 = _highlightColor; }
-            else if (subject == Subject.LanguageArts) { ColorData.Subject3 = _highlightColor; }
-            else if (subject == Subject.History) { ColorData.Subject4 = _highlightColor; }
-        }
-
-        private void ResetColors()
-        {
-            ColorData.Subject1 = _defaultColor;
-            ColorData.Subject2 = _defaultColor;
-            ColorData.Subject3 = _defaultColor;
-            ColorData.Subject4 = _defaultColor;
+            // send event
+            _activitySelectedEvent.InvokeEvent(activity, minutes);
+            // close popup
+            _durationPopup.Close();
         }
         #endregion
-    }
-
-
-    public class SubjectColorDataSource : INotifyBindablePropertyChanged
-    {
-        private Color _subject1;
-        private Color _subject2;
-        private Color _subject3;
-        private Color _subject4;
-
-        public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
-
-        [CreateProperty]
-        public Color Subject1
-        {
-            get => _subject1;
-            set
-            {
-                if (_subject1 == value) return;
-                _subject1 = value;
-                Notify();
-            }
-        }
-
-        [CreateProperty]
-        public Color Subject2
-        {
-            get => _subject2;
-            set
-            {
-                if (_subject2 == value) return;
-                _subject2 = value;
-                Notify();
-            }
-        }
-
-        [CreateProperty]
-        public Color Subject3
-        {
-            get => _subject3;
-            set
-            {
-                if (_subject3 == value) return;
-                _subject3 = value;
-                Notify();
-            }
-        }
-
-        [CreateProperty]
-        public Color Subject4
-        {
-            get => _subject4;
-            set
-            {
-                if (_subject4 == value) return;
-                _subject4 = value;
-                Notify();
-            }
-        }
-
-        void Notify([CallerMemberName] string property = "")
-        {
-            propertyChanged?.Invoke(this, new BindablePropertyChangedEventArgs(property));
-        }
     }
 }

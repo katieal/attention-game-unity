@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf711c94ec126514cb93ddffd0b8a525, type: 3}
-  m_Name: ListenNoActivitySO
+  m_Name: LeaveForSchoolActivitySO
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.GameData.ActivitySO
-  Activity: 2
-  DisplayName: Space Out
-  ButtonName: listenno-button
+  Activity: 256
+  DisplayName: Leave For School
+  ButtonName: leave-button
   HasFixedDuration: 1
   DefaultDuration: 0

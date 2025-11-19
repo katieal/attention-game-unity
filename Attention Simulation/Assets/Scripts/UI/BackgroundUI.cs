@@ -29,11 +29,10 @@ namespace Emyra.FocusGame.UI
 
         private void OnLocationChanged(LocationInfo info)
         {
-
             // assign bg image if possible
             if (_spriteLibrary.spriteLibraryAsset.GetCategoryNames().Contains(info.Place.ToString()))
             {
-                string label = "";
+                string label;
                 if (info.Room == GameData.Room.Classroom) { label = info.Subject.ToString(); }
                 else { label = info.Room.ToString(); }
 

@@ -20,14 +20,14 @@ namespace Emyra.FocusGame.Managers
 
         [Tooltip("Default time character wakes up at after sleeping")]
         [TimeSelector] public int _dayStartTime;
+        [TimeSelector] public int SchoolStartTime;
 
         [TitleGroup("Events")]
         //[FoldoutGroup("Events/Listening to Events")]
-        //[SerializeField] private IntEventSO _setTimeEvent; // will add if needed
-
-        //[FoldoutGroup("Events/Listening to Events")]
         //[Tooltip("Set current time to the default day start time.")]
         //[SerializeField] private VoidEventSO _resetTimeEvent;  // not sure if this one is necessary
+        [FoldoutGroup("Events/Listening to Events")]
+        [SerializeField] private IntEventSO _setTimeEvent;
         [FoldoutGroup("Events/Listening to Events")]
         [SerializeField] private IntEventSO _addTimeEvent;
         [FoldoutGroup("Events/Listening to Events")]
@@ -73,7 +73,7 @@ namespace Emyra.FocusGame.Managers
         {
             _changeDayEvent.OnRequestEvent += OnChangeDayRequest;
             // time
-            //_setTimeEvent.OnInvokeEvent += OnSetTimeEvent;
+            _setTimeEvent.OnInvokeEvent += OnSetTimeEvent;
             //_resetTimeEvent.OnInvokeEvent += OnResetTimeEvent;
             _addTimeEvent.OnInvokeEvent += OnAddTimeEvent;
             // game events
@@ -83,7 +83,7 @@ namespace Emyra.FocusGame.Managers
         {
             _changeDayEvent.OnRequestEvent -= OnChangeDayRequest;
             // time
-            //_setTimeEvent.OnInvokeEvent -= OnSetTimeEvent;
+            _setTimeEvent.OnInvokeEvent -= OnSetTimeEvent;
             //_resetTimeEvent.OnInvokeEvent -= OnResetTimeEvent;
             _addTimeEvent.OnInvokeEvent -= OnAddTimeEvent;
             // game events
@@ -106,7 +106,7 @@ namespace Emyra.FocusGame.Managers
 
         #region Callbacks
         private void OnChangeDayRequest() { ChangeDay(); }
-       // private void OnSetTimeEvent(int newTime) { SetTime(newTime); }
+        private void OnSetTimeEvent(int newTime) { SetTime(newTime); }
         //private void OnResetTimeEvent() { ResetTime(); }
         private void OnAddTimeEvent(int minutes) { AddTime(minutes); }
         #endregion

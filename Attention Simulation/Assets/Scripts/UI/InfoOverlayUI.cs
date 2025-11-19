@@ -112,7 +112,8 @@ namespace Emyra.FocusGame.UI
             {
                 if (Char.IsUpper(name[i]))
                 {
-                    name.Insert(i, " ");
+                    name = name.Insert(i, " ");
+                    i++;
                 }
             }
 

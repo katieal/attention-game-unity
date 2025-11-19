@@ -1,6 +1,8 @@
 using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.GameData;
 using Emyra.FocusGame.Managers;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 namespace Emyra.FocusGame.Testing
@@ -27,19 +29,37 @@ namespace Emyra.FocusGame.Testing
         #endregion
 
 
-        [FoldoutGroup("GameInfo Events", order: 2)]
+
+        [Button]
+        public void GetSubjectString(Subject subject)
+        {
+            string name = subject.ToString();
+
+            // excluding the first character, insert a space before each capital letter
+            for (int i = 1; i < name.Length; i++)
+            {
+                if (Char.IsUpper(name[i]))
+                {
+                    name = name.Insert(i, " ");
+                    i++;
+                    Debug.Log("inserting space");
+                }
+            }
+
+            Debug.Log(name);
+        }
+
+
+        #region GameInfo Testing 
+        [FoldoutGroup("GameInfo Events", order: 3)]
         [SerializeField] private VoidIntRequestEventSO _changeDayEvent;
         [FoldoutGroup("GameInfo Events")]
         [SerializeField] private IntEventSO _addTimeEvent;
         [FoldoutGroup("GameInfo Events")]
         [SerializeField] private VoidEventSO _sleepEvent;
-        //[FoldoutGroup("GameInfo Events")]
-        //[SerializeField] private StringEventSO _locationChangedEvent;
+        
 
-
-
-        #region GameInfo Testing Methods
-        [TitleGroup("GameInfo Testing", order: 1)]
+        [TitleGroup("GameInfo Testing", order: 2)]
         [ButtonGroup("GameInfo Testing/Button")]
         public void ChangeDay() { _changeDayEvent.RequestEvent(); }
         [TitleGroup("GameInfo Testing")]
@@ -47,10 +67,6 @@ namespace Emyra.FocusGame.Testing
         public void AddTime(int minutes) { _addTimeEvent.InvokeEvent(minutes); }
         [ButtonGroup("GameInfo Testing/Button")]
         public void SleepEvent() { _sleepEvent.InvokeEvent(); }
-        //[TitleGroup("GameInfo Testing")]
-        //[Button]
-        //public void ChangeLocation(string location) { _locationChangedEvent.InvokeEvent(location);}
-
         #endregion
     }
 }
