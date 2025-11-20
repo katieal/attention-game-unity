@@ -1,6 +1,7 @@
 using Emyra.FocusGame.EventChannel;
 using Emyra.FocusGame.GameData;
 using Emyra.FocusGame.Managers;
+using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using System;
@@ -103,7 +104,7 @@ namespace Emyra.FocusGame.UI
         }
 
         // convert subject enum into display string
-        private string GetSubjectString(Subject subject)
+        private string GetSubjectString(SubjectType subject)
         {
             string name = subject.ToString();
 

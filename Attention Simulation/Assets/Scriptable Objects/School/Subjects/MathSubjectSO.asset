@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488cdd3452240104ea92b4b64767047a, type: 3}
+  m_Name: MathSubjectSO
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.School.SchoolSubjectSO
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Subject: 0
+  SubjectName: 
+  Description: 
+  TotalPoints: 1000
+  Weights:
+  - Category: 0
+    Count: 6
+    PointValue: 25
+  - Category: 1
+    Count: 1
+    PointValue: 50
+  - Category: 2
+    Count: 3
+    PointValue: 100
+  - Category: 3
+    Count: 1
+    PointValue: 500
+  Assignments: []
+  RegularExams:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  FinalExam: {fileID: 0}

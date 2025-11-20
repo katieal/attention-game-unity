@@ -1,5 +1,6 @@
 using Emyra.FocusGame.EventChannel;
 using Emyra.FocusGame.GameData;
+using Emyra.FocusGame.School;
 using Emyra.FocusGame.Managers;
 using Sirenix.OdinInspector;
 using System;
@@ -31,7 +32,7 @@ namespace Emyra.FocusGame.Testing
 
 
         [Button]
-        public void GetSubjectString(Subject subject)
+        public void GetSubjectString(SubjectType subject)
         {
             string name = subject.ToString();
 

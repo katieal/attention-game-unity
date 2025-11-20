@@ -1,3 +1,4 @@
+using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
@@ -10,19 +11,13 @@ namespace Emyra.FocusGame.GameData
          Classroom, Library, Cafeteria, Bedroom, Kitchen
     }
 
-    public enum Subject
-    {
-        None = -1, Math, Science, LanguageArts, History, SocialStudies,
-        ForeignLanguage
-    }
-
     [CreateAssetMenu(fileName = "LocationSO", menuName = "Scriptable Objects/Location")]
     public class LocationSO : ScriptableObject
     {
         [EnumToggleButtons] public Place Place;
         public Room Room;
         [ShowIf("Room", Value = Room.Classroom)]
-        public Subject Subject;
+        public SubjectType Subject;
 
         public ActivityName Activities;
 
@@ -44,7 +39,7 @@ namespace Emyra.FocusGame.GameData
     {
         public Place Place;
         public Room Room;
-        public Subject Subject;
+        public SubjectType Subject;
         public ActivityName Activities;
     }
 }

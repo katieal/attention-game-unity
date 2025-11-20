@@ -1,5 +1,6 @@
 using Emyra.FocusGame.EventChannel;
 using Emyra.FocusGame.GameData;
+using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -65,14 +66,14 @@ namespace Emyra.FocusGame.UI
         }
 
         #region Class Schedule
-        private void UpdateScheduleColors(Subject subject)
+        private void UpdateScheduleColors(SubjectType subject)
         {
             ResetColors();
 
-            if (subject == Subject.Math) { ColorData.Subject1 = _highlightColor; }
-            else if (subject == Subject.Science) { ColorData.Subject2 = _highlightColor; }
-            else if (subject == Subject.LanguageArts) { ColorData.Subject3 = _highlightColor; }
-            else if (subject == Subject.History) { ColorData.Subject4 = _highlightColor; }
+            if (subject == SubjectType.Math) { ColorData.Subject1 = _highlightColor; }
+            else if (subject == SubjectType.Science) { ColorData.Subject2 = _highlightColor; }
+            else if (subject == SubjectType.LanguageArts) { ColorData.Subject3 = _highlightColor; }
+            else if (subject == SubjectType.History) { ColorData.Subject4 = _highlightColor; }
         }
 
         private void ResetColors()
