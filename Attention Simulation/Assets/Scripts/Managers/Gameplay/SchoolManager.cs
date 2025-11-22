@@ -1,3 +1,4 @@
+using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,87 +7,66 @@ namespace Emyra.FocusGame.Managers
 {
     public class SchoolManager : MonoBehaviour
     {
+        public List<SchoolSubjectSO> SchoolSchedule;
 
-    }
-}
+        public List<SubjectInstance> Subjects;
 
-namespace Emyra.FocusGame.School
-{
-
-    public class SubjectInstance
-    {
-        // add class difficulty?
-
-        public int CurrentKnowledge; // % out of 100%
-        // scores on tests will be knowledge % += some lvl of variance - maybe add a confidence factor?
-
-        // current grade
-        public int CurrentPoints;
-        public int TotalPoints; // final total is out of 1000?
-
-        public List<AssignmentInstance> Assignments;
-        public List<ExamInstance> Exams;
-    }
+        // temp const variable - update it to change with game difficulty?
+        private int _passingGrade = 60;
 
 
-    public class AssignmentInstance // can create "modifiers" to increase/decrease difficulty
-    {
-        public string Name;
-        public string Description;
-        public Status Status;
-        public AssignmentType Type;
+        private void OnEnable()
+        {
+            Subjects = new List<SubjectInstance>();
+            foreach (SchoolSubjectSO data in SchoolSchedule)
+            {
+                Subjects.Add(new SubjectInstance(data));
+            }
+        }
+
+        private float CalculateScore(Vector2Int knowledgeRange, DifficultyLevel difficulty, int currentKnowledge)
+        {
+            // note: might add an alternate calculation for scores below passing in the future
+
+            // calculate the size of the range of passing scores
+            int range = knowledgeRange.y - knowledgeRange.x;
+            int variance = GetVariance(difficulty);
+            // calculate what percent of the range the user achieved
+            float rangePercent = (currentKnowledge - knowledgeRange.x) / range;
+            // if percent > 1 (aka currentKnowledge > max), reduce variance
+            if (rangePercent > 1)
+            {
+                // reduce variance by amt of knowledge above max
+                // note: might change this calculation in the future!!!
+                variance = Mathf.Clamp((variance - (currentKnowledge - knowledgeRange.y)), 0, GetVariance(difficulty));
+            }
+
+            // calculate base grade
+            float grade = (((100 - _passingGrade) * rangePercent) + _passingGrade);
+
+            // factor in variance
+            grade = Random.Range(grade - variance, grade + variance);
+            return grade;
+        }
+
 
         /// <summary>
-        /// Knowledge % required to complete assignment. 
-        /// Less than min means higher completion time, greater than max means lower completion time.
+        /// Determine level of variance in grade based on difficulty level
         /// </summary>
-        public Vector2Int KnowledgeRequired;
-
-        /// <summary>
-        /// Date the assignment will be given. X = Day, Y = Week
-        /// </summary>
-        public Vector2Int DateAssigned;
-        /// <summary>
-        /// Number of days player has to complete assignment (excluding weekends)
-        /// </summary>
-        public int Duration;
-        /// <summary>
-        /// Days left until deadline
-        /// </summary>
-        public int DaysLeft;
-
-        /// <summary>
-        /// Minutes required to complete assignment
-        /// </summary>
-        public int TimeRequired;
-        /// <summary>
-        /// Remaining time needed to complete assignment
-        /// </summary>
-        public int TimeLeft;
-
-        /// <summary>
-        /// Knowledge points gained upon assignment completion
-        /// </summary>
-        public int KnowledgeGained;
-
-        /// <summary>
-        /// Grade received for this assignment
-        /// </summary>
-        public int Grade;
-    }
-
-
-    public class ExamInstance
-    {
-        public string Name;
-        public ExamType Type;
-
-        [ShowIf("Type", Value = ExamType.Regular)]
-        public int Order; // out of 3?
-        public Vector2Int KnowledgeRequired;
-        public Status Status;
-
-        public int PointsTotal;
-        public int PointsEarned;
+        /// <param name="level"></param>
+        /// <returns></returns>
+        private int GetVariance(DifficultyLevel level)
+        {
+            // note: add in game difficulty here?
+            switch (level)
+            {
+                case DifficultyLevel.Easiest: return 1;
+                case DifficultyLevel.Easy: return 3;
+                case DifficultyLevel.Medium: return 5;
+                case DifficultyLevel.Hard: return 7;
+                case DifficultyLevel.Hardest: return 10;
+            }
+            return 0;
+        }
     }
 }

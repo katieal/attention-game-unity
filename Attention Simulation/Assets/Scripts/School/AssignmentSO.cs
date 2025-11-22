@@ -14,7 +14,6 @@ namespace Emyra.FocusGame.School
         public string Name;
         public string Description;
         [EnumToggleButtons] public AssignmentType Type;
-        [EnumToggleButtons] public Status Status;
 
         [Title("Knowledge")]
         [Tooltip("Knowledge range required to complete assignment. " +
@@ -30,11 +29,11 @@ namespace Emyra.FocusGame.School
         [Title("Timing")]
         [Tooltip("Number of days player has to complete assignment")]
         [MinValue(1), SuffixLabel("days", Overlay = true)]
-        public int Duration;
+        public int DaysTotal;
 
         [Tooltip("Number of minutes player must spend to fully complete assignment.")]
         [SuffixLabel("minutes", Overlay = true)]
-        public int TimeRequired;
+        public int TimeTotal;
 
         [Tooltip("Day this assignment will be assigned to player (x = Day, Y = Week)")]
         [ShowInInspector] [PropertyOrder(4)]
@@ -60,7 +59,6 @@ namespace Emyra.FocusGame.School
             }
             return new Vector2Int(0, 0);
         }
-
 #if UNITY_EDITOR
         private static bool DrawCell(Rect rect, bool value)
         {
@@ -78,10 +76,80 @@ namespace Emyra.FocusGame.School
             return value;
         }
 #endif
-
     }
-
 
     public enum Status { Unassigned, InProgress, Complete, Late }
     public enum AssignmentType { Homework, Project }
+
+    public class AssignmentInstance 
+    {
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public AssignmentType Type { get; private set; }
+        public Status Status;
+
+        /// <summary>
+        /// Knowledge % required to complete assignment. 
+        /// Less than min means higher completion time, greater than max means lower completion time.
+        /// </summary>
+        public Vector2Int KnowledgeRequired { get; private set; }
+
+        /// <summary>
+        /// Knowledge points gained upon assignment completion
+        /// </summary>
+        public int KnowledgeGained { get; private set; }
+
+        /// <summary>
+        /// Date the assignment will be given. X = Day, Y = Week
+        /// </summary>
+        public Vector2Int DateAssigned { get; private set; }
+
+        /// <summary>
+        /// Number of days player has to complete assignment (excluding weekends)
+        /// </summary>
+        public int DaysTotal { get; private set; }
+
+        /// <summary>
+        /// Days left until deadline
+        /// </summary>
+        public int DaysLeft;
+
+        /// <summary>
+        /// Minutes required to complete assignment
+        /// </summary>
+        public int TimeTotal { get; private set; }
+
+        /// <summary>
+        /// Remaining time needed to complete assignment
+        /// </summary>
+        public int TimeLeft;
+
+        /// <summary>
+        /// Total points that can be earned from this assignment.
+        /// </summary>
+        public int PointsTotal { get; private set; }
+
+        /// <summary>
+        /// Points received for this assignment (aka Grade).
+        /// </summary>
+        public int PointsEarned;
+
+
+        public AssignmentInstance(AssignmentSO data, int pointsTotal)
+        {
+            this.Name = data.Name;
+            this.Description = data.Description;
+            this.Type = data.Type;
+            this.Status = Status.Unassigned;
+            this.KnowledgeRequired = data.KnowledgeRequired;
+            this.KnowledgeGained = data.KnowledgeGained;
+            this.DateAssigned = data.DateAssigned;
+            this.DaysTotal = data.DaysTotal;
+            this.DaysLeft = data.DaysTotal;
+            this.TimeTotal = data.TimeTotal;
+            this.TimeLeft = data.TimeTotal;
+            this.PointsTotal = pointsTotal;
+            this.PointsEarned = 0;
+        }
+    }
 }

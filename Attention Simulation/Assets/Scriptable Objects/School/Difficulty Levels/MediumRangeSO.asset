@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bad4bf93e0896b439e1819fcb758aa8, type: 3}
+  m_Name: MediumRangeSO
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.School.GradeRangeSO
+  <Difficulty>k__BackingField: 3
+  <GradeRanges>k__BackingField:
+  - Grade: 12
+    RangeRequired: {x: 90, y: 100}
+  - Grade: 9
+    RangeRequired: {x: 80, y: 89}
+  - Grade: 6
+    RangeRequired: {x: 70, y: 79}
+  - Grade: 3
+    RangeRequired: {x: 60, y: 69}
+  - Grade: 0
+    RangeRequired: {x: 0, y: 59}

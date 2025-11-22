@@ -8,15 +8,16 @@ namespace Emyra.FocusGame.School
     [CreateAssetMenu(fileName = "SchoolSubjectSO", menuName = "Scriptable Objects/School/SubjectSO")]
     public class SchoolSubjectSO : SerializedScriptableObject
     {
-        // TODO: add difficulty?
-
         [TabGroup("Subject Info")]
-        public SubjectType Subject;
+        public SubjectType SubjectType;
         [TabGroup("Subject Info")]
         [Tooltip("The specific subject within a given type. Ex: Math/Geometry")]
         public string SubjectName;
         [TabGroup("Subject Info")]
         public string Description;
+        [TabGroup("Subject Info")]
+        [Tooltip("Subject Difficulty affects the speed/frequency at which knowlege points are earned.")]
+        public DifficultyLevel Difficulty;
 
         [TabGroup("Grades")]
         [Tooltip("Total number of points that can be earned in this class. Used to calculate grade.")]
@@ -54,6 +55,15 @@ namespace Emyra.FocusGame.School
             return total == this.TotalPoints;
         }
         #endregion
+
+        public int GetPointDistribution(string categoryName)
+        {
+            foreach (PointDistribution weight in Weights)
+            {
+                if (weight.Category.ToString().Equals(categoryName)) { return weight.PointValue; }
+            }
+            return 0;
+        }
     }
 
     public enum SubjectType
@@ -72,5 +82,68 @@ namespace Emyra.FocusGame.School
         [HorizontalGroup(Width = 0.3f, LabelWidth = 70, Gap = 8)] public int PointValue;
 
         [ShowInInspector][HorizontalGroup(Width = 0.3f, LabelWidth = 70, Gap = 8)] public int TotalPoints { get { return Count * PointValue; } }
+    }
+
+    public class SubjectInstance
+    {
+        // TODO in future note: add "modifier" SOs to increase/decrease difficulty
+
+        /// <summary>
+        /// The general subject category (Math, Science, etc.)
+        /// </summary>
+        public SubjectType SubjectType { get; private set; }
+        /// <summary>
+        /// The specific course within a subject category. Ex: Math/Geometry)
+        /// </summary>
+        public string SubjectName { get; private set; }
+        public string Description { get; private set; }
+        public DifficultyLevel Difficulty { get; private set; }
+
+        /// <summary>
+        /// Player's current accumulated knowledge percentage out of 100%.
+        /// </summary>
+        public int CurrentKnowledge
+        {
+            get {  return CurrentKnowledge; }
+            set { CurrentKnowledge = Mathf.Clamp(value, 0, 100); }
+        }
+
+        public int TotalPoints { get; private set; }
+        // current grade
+        public int CurrentPoints;
+
+        public List<AssignmentInstance> Assignments;
+        public List<ExamInstance> RegularExams;
+        public ExamInstance FinalExam;
+
+        // constructor
+        public SubjectInstance(SchoolSubjectSO data)
+        {
+            this.SubjectType = data.SubjectType;
+            this.SubjectName = data.SubjectName;
+            this.Description = data.Description;
+            this.Difficulty = data.Difficulty;
+            this.CurrentKnowledge = 0;
+            this.TotalPoints = data.TotalPoints;
+            this.CurrentPoints = 0;
+
+            // add assignments with corresponding point values
+            this.Assignments = new List<AssignmentInstance>();
+            foreach (AssignmentSO assignment in data.Assignments)
+            {
+                this.Assignments.Add(new AssignmentInstance(assignment, 
+                    data.GetPointDistribution(assignment.Type.ToString())));
+            }
+
+            // add exams with corresponding point values
+            this.RegularExams = new List<ExamInstance>();
+            foreach (ExamSO exam in data.RegularExams)
+            {
+                this.RegularExams.Add(new ExamInstance(exam, data.GetPointDistribution(Category.Exam.ToString())));
+            }
+
+            // add final exam
+            this.FinalExam = new ExamInstance(data.FinalExam, data.GetPointDistribution(Category.Final.ToString()));
+        }
     }
 }

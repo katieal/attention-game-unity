@@ -12,6 +12,7 @@ namespace Emyra.FocusGame.Managers
 
     public class GameplayManager : MonoBehaviour
     {
+        // maybe change to enum of morning/school/afternoon
         public LocationSO[] Schedule;
 
         [TitleGroup("Events")]
