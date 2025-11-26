@@ -1,6 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/CustomThemes/emyra_schedule_element.uss?fileID=7433441132597879392&amp;guid=53b4ae2b443afc848b539eb7178e525b&amp;type=3#emyra_schedule_element" />
-    <ui:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 32px; -unity-text-align: middle-left; justify-content: center; flex-direction: column; align-items: flex-start;">
+    <Style src="project://database/Assets/UI%20Toolkit/CustomThemes/emyra-standard_text.uss?fileID=7433441132597879392&amp;guid=bbf1525628eb7164ea10518d2e58ba8f&amp;type=3#emyra-standard_text" />
+    <ui:VisualElement name="VisualElement" picking-mode="Ignore" class="emyra-standard_text">
         <ui:VisualElement name="class-schedule" data-source-type="Emyra.FocusGame.UI.SchoolScheduleDataSource, Assembly-CSharp" style="width: 325px; height: 400px; margin-left: 20px; display: flex; visibility: visible;">
             <ui:Foldout text="Class Schedule" name="schedule-foldout" value="true" style="background-color: rgba(0, 0, 0, 0.12);">
                 <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-0" data-source-path="SubjectDataList[0]" class="emyra-schedule-element" style="flex-shrink: 1;">
