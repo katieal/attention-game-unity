@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-namespace Emyra.FocusGame.GameData
+namespace Emyra.FocusGame.Locations
 {
     public enum Place { Home, School }
     public enum Room
@@ -16,8 +16,6 @@ namespace Emyra.FocusGame.GameData
     {
         [EnumToggleButtons] public Place Place;
         public Room Room;
-        [ShowIf("Room", Value = Room.Classroom)]
-        public SubjectType Subject;
 
         public ActivityName Activities;
 
@@ -27,7 +25,7 @@ namespace Emyra.FocusGame.GameData
             {
                 Place = this.Place,
                 Room = this.Room,
-                Subject = this.Subject,
+                SubjectName = string.Empty,
                 Activities = this.Activities
             };
 
@@ -39,7 +37,8 @@ namespace Emyra.FocusGame.GameData
     {
         public Place Place;
         public Room Room;
-        public SubjectType Subject;
+        public string SubjectName;
+        //public int SubjectIndex;
         public ActivityName Activities;
     }
 }

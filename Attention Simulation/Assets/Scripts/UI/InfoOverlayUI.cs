@@ -1,4 +1,5 @@
 using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.Locations;
 using Emyra.FocusGame.GameData;
 using Emyra.FocusGame.Managers;
 using Emyra.FocusGame.School;
@@ -9,7 +10,7 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LocationInfo = Emyra.FocusGame.GameData.LocationInfo;
+using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -80,7 +81,7 @@ namespace Emyra.FocusGame.UI
             // if player is in a classroom, room label displays current subject instead of room name
             if (info.Room == Room.Classroom)
             {
-                OverlayData.Room = GetSubjectString(info.Subject);
+                OverlayData.Room = info.SubjectName;
             }
             else
             {

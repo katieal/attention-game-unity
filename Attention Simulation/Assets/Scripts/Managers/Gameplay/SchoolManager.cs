@@ -1,3 +1,4 @@
+using Emyra.FocusGame.EventChannel;
 using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -7,9 +8,11 @@ namespace Emyra.FocusGame.Managers
 {
     public class SchoolManager : MonoBehaviour
     {
-        public List<SchoolSubjectSO> SchoolSchedule;
+        [TitleGroup("Events")]
+        [FoldoutGroup("Events/Listening to Events")]
+        [SerializeField] private StringListEventSO _schoolScheduleEvent;
 
-        public List<SubjectInstance> Subjects;
+        private List<SubjectInstance> _subjects;
 
         // temp const variable - update it to change with game difficulty?
         private int _passingGrade = 60;
@@ -17,10 +20,20 @@ namespace Emyra.FocusGame.Managers
 
         private void OnEnable()
         {
-            Subjects = new List<SubjectInstance>();
-            foreach (SchoolSubjectSO data in SchoolSchedule)
+            _schoolScheduleEvent.OnInvokeEvent += OnSchoolScheduleEvent;
+        }
+        private void OnDisable()
+        {
+            _schoolScheduleEvent.OnInvokeEvent -= OnSchoolScheduleEvent;
+        }
+
+        private void OnSchoolScheduleEvent(List<string> subjectIds)
+        {
+            _subjects = new List<SubjectInstance>();
+            foreach (string subjectId in subjectIds)
             {
-                Subjects.Add(new SubjectInstance(data));
+                if (subjectId == "break_lunch") { continue; }
+                _subjects.Add(GameData.SchoolSubjectDatabase.Instance.GetSubjectInstance(subjectId));
             }
         }
 

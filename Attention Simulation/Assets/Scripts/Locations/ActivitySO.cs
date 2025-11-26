@@ -1,8 +1,9 @@
+using Emyra.FocusGame.GameData;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-namespace Emyra.FocusGame.GameData
+namespace Emyra.FocusGame.Locations
 {
     [Flags]
     public enum ActivityName

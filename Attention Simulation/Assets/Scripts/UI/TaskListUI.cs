@@ -1,5 +1,5 @@
 using Emyra.FocusGame.EventChannel;
-using Emyra.FocusGame.GameData;
+using Emyra.FocusGame.Locations;
 using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using System;
@@ -8,137 +8,153 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LocationInfo = Emyra.FocusGame.GameData.LocationInfo;
+using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
 
 namespace Emyra.FocusGame.UI
 {
     public class TaskListUI : MonoBehaviour
     {
         [Title("References")]
-        public UIDocument TaskDocument;
-        public SubjectColorDataSource ColorData;
+        [SerializeField] private UIDocument _taskDocument;
+
 
         [TitleGroup("Events")]
         [FoldoutGroup("Events/Listening to Events")]
+        [SerializeField] private StringListEventSO _schoolScheduleEvent;
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
 
+        public SchoolScheduleDataSource ScheduleData;
+        //private List<string> _subjectNames;
         // ui elements
         private VisualElement _scheduleElement;
+
+        // current position
+        private int _scheduleIndex;
+
         // final vars
-        private Color _highlightColor;
+        private int _subjectCount = 7;
         private Color _defaultColor;
+        private Color _highlightColor;
+        private Color _disabledColor;
 
         private void Awake()
         {
-            ColorData = new SubjectColorDataSource();
+            ScheduleData = new SchoolScheduleDataSource();
+            ScheduleData.SubjectDataList = new SchoolSubjectDataSource[_subjectCount];
 
-            _highlightColor = new Color(255, 234, 0, 172);
+            // index starts at -1
+            _scheduleIndex = -1;
+
             _defaultColor = new Color(0, 0, 0, 0);
+            _highlightColor = new Color(255, 234, 0, 0.67f);
+            _disabledColor = new Color(0, 0, 0, 0.5f);
 
-            _scheduleElement = TaskDocument.rootVisualElement.Q("class-schedule");
-            _scheduleElement.dataSource = ColorData;
+            _scheduleElement = _taskDocument.rootVisualElement.Q("class-schedule");
+            _scheduleElement.dataSource = ScheduleData;
         }
 
         private void OnEnable()
         {
             // subscribe to events
+            _schoolScheduleEvent.OnInvokeEvent += OnSchoolScheduleEvent;
             _locationChangedEvent.OnInvokeEvent += OnLocationChanged;
         }
         private void OnDisable()
         {
             // unsubscribe from events
+            _schoolScheduleEvent.OnInvokeEvent -= OnSchoolScheduleEvent;
             _locationChangedEvent.OnInvokeEvent -= OnLocationChanged;
+        }
+
+        private void OnSchoolScheduleEvent(List<string> subjectIds)
+        {
+            // set subject name labels in UI
+            for (int i = 0; i < subjectIds.Count; i++)
+            {
+                string subjectName = GameData.SchoolSubjectDatabase.Instance.GetSubjectName(subjectIds[i]);
+                ScheduleData.SubjectDataList[i] = new SchoolSubjectDataSource();
+                ScheduleData.SubjectDataList[i].Color = _defaultColor;
+                ScheduleData.SubjectDataList[i].Name = subjectName;
+            }
+            _scheduleIndex = -1;
         }
 
         private void OnLocationChanged(LocationInfo info)
         {
-            // if in school, highlight corresponding subject in class schedule overlay
-            if (info.Room == Room.Classroom)
+            // if in school and location is the next one in school schedule
+            if ((info.Place == Place.School) && (info.SubjectName == ScheduleData.SubjectDataList[_scheduleIndex + 1].Name))
             {
+                // ensure school schedule is visible
                 _scheduleElement.visible = true;
-                UpdateScheduleColors(info.Subject);
+
+                // grey out previous label if necessary
+                if (_scheduleIndex >= 0 && _scheduleIndex < ScheduleData.SubjectDataList.Length)
+                {
+                    // subjects that have been completed are set to disabled color
+                    ScheduleData.SubjectDataList[_scheduleIndex].Color = _disabledColor;
+                }
+
+                // highlight current label
+                _scheduleIndex++;
+                ScheduleData.SubjectDataList[_scheduleIndex].Color = _highlightColor;
             }
             else
             {
-                // if not in classroom, hide schedule overlay
+                // if not in classroom, hide schedule overlay and reset label colors
                 _scheduleElement.visible = false;
+                ResetColors();
             }
         }
 
-        #region Class Schedule
-        private void UpdateScheduleColors(SubjectType subject)
-        {
-            ResetColors();
-
-            if (subject == SubjectType.Math) { ColorData.Subject1 = _highlightColor; }
-            else if (subject == SubjectType.Science) { ColorData.Subject2 = _highlightColor; }
-            else if (subject == SubjectType.LanguageArts) { ColorData.Subject3 = _highlightColor; }
-            else if (subject == SubjectType.History) { ColorData.Subject4 = _highlightColor; }
-        }
-
+        [Button]
         private void ResetColors()
         {
-            ColorData.Subject1 = _defaultColor;
-            ColorData.Subject2 = _defaultColor;
-            ColorData.Subject3 = _defaultColor;
-            ColorData.Subject4 = _defaultColor;
+            for (int i = 0; i < ScheduleData.SubjectDataList.Length; i++)
+            {
+                ScheduleData.SubjectDataList[i].Color = _defaultColor;
+            }
         }
-        #endregion
+
+        [Button]
+        public void SetColor(float r, float g, float b, float a)
+        {
+            ScheduleData.SubjectDataList[0].Color = new Color (r, g, b, a);
+        }
+
     }
 
-    public class SubjectColorDataSource : INotifyBindablePropertyChanged
+    public class SchoolScheduleDataSource 
     {
-        private Color _subject1;
-        private Color _subject2;
-        private Color _subject3;
-        private Color _subject4;
+        public SchoolSubjectDataSource[] SubjectDataList; 
+    }
+
+    public class SchoolSubjectDataSource : INotifyBindablePropertyChanged
+    {
+        private Color _color;
+        private string _name;
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
         [CreateProperty]
-        public Color Subject1
+        public Color Color
         {
-            get => _subject1;
+            get => _color; 
             set
             {
-                if (_subject1 == value) return;
-                _subject1 = value;
+                if (_color == value) return;
+                _color = value;
                 Notify();
             }
         }
 
         [CreateProperty]
-        public Color Subject2
+        public string Name
         {
-            get => _subject2;
+            get => _name;
             set
             {
-                if (_subject2 == value) return;
-                _subject2 = value;
-                Notify();
-            }
-        }
-
-        [CreateProperty]
-        public Color Subject3
-        {
-            get => _subject3;
-            set
-            {
-                if (_subject3 == value) return;
-                _subject3 = value;
-                Notify();
-            }
-        }
-
-        [CreateProperty]
-        public Color Subject4
-        {
-            get => _subject4;
-            set
-            {
-                if (_subject4 == value) return;
-                _subject4 = value;
+                if (_name == value) return;
+                _name = value;
                 Notify();
             }
         }

@@ -1,10 +1,11 @@
 using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.Locations;
 using Sirenix.OdinInspector;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
-using LocationInfo = Emyra.FocusGame.GameData.LocationInfo;
+using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -33,7 +34,7 @@ namespace Emyra.FocusGame.UI
             if (_spriteLibrary.spriteLibraryAsset.GetCategoryNames().Contains(info.Place.ToString()))
             {
                 string label;
-                if (info.Room == GameData.Room.Classroom) { label = info.Subject.ToString(); }
+                if (info.Room == Room.Classroom) { label = info.SubjectName; }
                 else { label = info.Room.ToString(); }
 
                 if (_spriteLibrary.spriteLibraryAsset.GetCategoryLabelNames(info.Place.ToString()).Contains(label))

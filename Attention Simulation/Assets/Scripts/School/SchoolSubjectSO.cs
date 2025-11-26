@@ -8,18 +8,21 @@ namespace Emyra.FocusGame.School
     [CreateAssetMenu(fileName = "SchoolSubjectSO", menuName = "Scriptable Objects/School/SubjectSO")]
     public class SchoolSubjectSO : SerializedScriptableObject
     {
-        [TabGroup("Subject Info")]
+        [TitleGroup("Subject Info")]
+        public string Id;
+        [TitleGroup("Subject Info")]
         public SubjectType SubjectType;
-        [TabGroup("Subject Info")]
-        [Tooltip("The specific subject within a given type. Ex: Math/Geometry")]
+        [TitleGroup("Subject Info")]
+        [Tooltip("Display name - the specific subject within a given type. Ex: Math/Geometry")]
         public string SubjectName;
-        [TabGroup("Subject Info")]
+        [TitleGroup("Subject Info")]
         public string Description;
-        [TabGroup("Subject Info")]
+        [TitleGroup("Subject Info")]
         [Tooltip("Subject Difficulty affects the speed/frequency at which knowlege points are earned.")]
+        [HideIf("SubjectType", Value = SubjectType.Break)]
         public DifficultyLevel Difficulty;
 
-        [TabGroup("Grades")]
+        [TabGroup("Grades", VisibleIf = "@this.SubjectType != Emyra.FocusGame.School.SubjectType.Break")]
         [Tooltip("Total number of points that can be earned in this class. Used to calculate grade.")]
         public int TotalPoints = 1000;
         [TabGroup("Grades")]
@@ -69,7 +72,7 @@ namespace Emyra.FocusGame.School
     public enum SubjectType
     {
         None = -1, Math, Science, LanguageArts, History, SocialStudies,
-        ForeignLanguage
+        ForeignLanguage, Break
     }
 
     public enum Category { Homework, Project, Exam, Final }
@@ -89,11 +92,15 @@ namespace Emyra.FocusGame.School
         // TODO in future note: add "modifier" SOs to increase/decrease difficulty
 
         /// <summary>
+        /// ID string used to look up subjects in the database
+        /// </summary>
+        public string Id { get; private set; }
+        /// <summary>
         /// The general subject category (Math, Science, etc.)
         /// </summary>
         public SubjectType SubjectType { get; private set; }
         /// <summary>
-        /// The specific course within a subject category. Ex: Math/Geometry)
+        /// Display name - the specific course within a subject category. Ex: Math/Geometry)
         /// </summary>
         public string SubjectName { get; private set; }
         public string Description { get; private set; }
@@ -102,10 +109,14 @@ namespace Emyra.FocusGame.School
         /// <summary>
         /// Player's current accumulated knowledge percentage out of 100%.
         /// </summary>
+        private int _currentKnowledge;
+        /// <summary>
+        /// Player's current accumulated knowledge percentage out of 100%.
+        /// </summary>
         public int CurrentKnowledge
         {
-            get {  return CurrentKnowledge; }
-            set { CurrentKnowledge = Mathf.Clamp(value, 0, 100); }
+            get {  return _currentKnowledge; }
+            set { _currentKnowledge = Mathf.Clamp(value, 0, 100); }
         }
 
         public int TotalPoints { get; private set; }

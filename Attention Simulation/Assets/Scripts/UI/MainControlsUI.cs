@@ -1,4 +1,5 @@
 using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.Locations;
 using Emyra.FocusGame.GameData;
 using Sirenix.OdinInspector;
 using System;
@@ -7,7 +8,7 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LocationInfo = Emyra.FocusGame.GameData.LocationInfo;
+using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -49,8 +50,7 @@ namespace Emyra.FocusGame.UI
             #endregion
 
             _activityDb = ActivityDatabase.Instance;
-            // hide duration popup if needed
-            if (_durationPopup.enabled) { _durationPopup.Close(); }
+
             
             // bind activity button callbacks
             InitButtons();
@@ -72,6 +72,12 @@ namespace Emyra.FocusGame.UI
 
             // unsubscribe from events
             _locationChangedEvent.OnInvokeEvent -= OnLocationChanged;
+        }
+
+        private void Start()
+        {
+            // hide duration popup if needed
+            if (_durationPopup.enabled) { _durationPopup.Close(); }
         }
 
         private void InitButtons()
