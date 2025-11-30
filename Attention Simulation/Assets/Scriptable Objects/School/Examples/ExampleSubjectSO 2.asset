@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488cdd3452240104ea92b4b64767047a, type: 3}
+  m_Name: ExampleSubjectSO 2
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.School.SchoolSubjectSO
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Id: example_subject2
+  SubjectType: 3
+  SubjectName: US History
+  Description: Learn about US History
+  Difficulty: 3
+  TotalPoints: 1200
+  Weights:
+  - Category: 0
+    Count: 5
+    PointValue: 20
+  - Category: 1
+    Count: 3
+    PointValue: 100
+  - Category: 2
+    Count: 3
+    PointValue: 100
+  - Category: 3
+    Count: 1
+    PointValue: 500
+  Assignments:
+  - {fileID: 11400000, guid: 6fc928961afcf364a878d589aed83239, type: 2}
+  - {fileID: 11400000, guid: 8b3e7c0edd502234ea439cb804c86945, type: 2}
+  - {fileID: 11400000, guid: 10e12f59124749f4a89c8ff2e3552f64, type: 2}
+  - {fileID: 11400000, guid: d8fc9f00155dfb1418bf2a6ade70e5f9, type: 2}
+  - {fileID: 11400000, guid: 382d36ac0075b89419abc97328b99059, type: 2}
+  - {fileID: 11400000, guid: 6c828c467e2de9d4792e78b2ce8ecc80, type: 2}
+  - {fileID: 11400000, guid: c554452cae63add4c8030c3b149471b3, type: 2}
+  - {fileID: 11400000, guid: d58ea32d2c9f0704ea80f13121f71cc0, type: 2}
+  RegularExams:
+  - {fileID: 11400000, guid: 3e92f8a8f0d42c34dac339a7b704c509, type: 2}
+  - {fileID: 11400000, guid: c5b3c6368ffbe3d4d9bf3a541957386a, type: 2}
+  - {fileID: 11400000, guid: d54df471fb7d93c4094dd6f0a40505f7, type: 2}
+  FinalExam: {fileID: 11400000, guid: 31d373abac2303c44a539633fd7e550e, type: 2}

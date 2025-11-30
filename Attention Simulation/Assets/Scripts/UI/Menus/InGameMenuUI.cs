@@ -1,19 +1,18 @@
+using Emyra.FocusGame.School;
+using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.Properties;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace Emyra.FocusGame
+namespace Emyra.FocusGame.UI
 {
     public class InGameMenuUI : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
+
 }

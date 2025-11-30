@@ -27,7 +27,7 @@ namespace Emyra.FocusGame.School
         public int KnowledgeGained;
 
         [Title("Timing")]
-        [Tooltip("Number of days player has to complete assignment")]
+        [Tooltip("Number of days player has to complete assignment (excluding weekends)")]
         [MinValue(1), SuffixLabel("days", Overlay = true)]
         public int DaysTotal;
 
@@ -81,9 +81,10 @@ namespace Emyra.FocusGame.School
     public enum Status { Unassigned, InProgress, Complete, Late }
     public enum AssignmentType { Homework, Project }
 
-    public class AssignmentInstance 
+    [Serializable]
+    public class AssignmentInstance // serializable for debug only
     {
-        public string Name { get; private set; }
+        [field: SerializeField][field: ReadOnly] public string Name { get; private set; }
         public string Description { get; private set; }
         public AssignmentType Type { get; private set; }
         public Status Status;
@@ -120,14 +121,14 @@ namespace Emyra.FocusGame.School
         public int TimeTotal { get; private set; }
 
         /// <summary>
-        /// Remaining time needed to complete assignment
+        /// Minutes spent on the assignment so far
         /// </summary>
-        public int TimeLeft;
+        public int TimeSpent;
 
         /// <summary>
         /// Total points that can be earned from this assignment.
         /// </summary>
-        public int PointsTotal { get; private set; }
+        [field: SerializeField][field: ReadOnly] public int PointsTotal { get; private set; }
 
         /// <summary>
         /// Points received for this assignment (aka Grade).
@@ -147,7 +148,7 @@ namespace Emyra.FocusGame.School
             this.DaysTotal = data.DaysTotal;
             this.DaysLeft = data.DaysTotal;
             this.TimeTotal = data.TimeTotal;
-            this.TimeLeft = data.TimeTotal;
+            this.TimeSpent = 0;
             this.PointsTotal = pointsTotal;
             this.PointsEarned = 0;
         }

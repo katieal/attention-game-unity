@@ -129,26 +129,14 @@ GameObject:
   m_Component:
   - component: {fileID: 75192349}
   - component: {fileID: 75192348}
-  - component: {fileID: 75192347}
+  - component: {fileID: 75192350}
   m_Layer: 5
-  m_Name: InGameMenuUI
+  m_Name: SubjectMenuUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &75192347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75192346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4082f059240646641b6a77d5cc483b63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.InGameMenuUI
 --- !u!114 &75192348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: de53c1923c0eced4ca0bd8b2e5da225c, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: c5dfb5ee57616a94eb380b72536ed5c8, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: edaa66cb6ac04084e971d1d6a3b690f2, type: 3}
   m_SortingOrder: 8
   m_Position: 0
   m_WorldSpaceSizeMode: 1
@@ -179,6 +167,299 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75192346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &75192350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75192346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083bdfd170ad64b46ae9f41a053c5899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.UI.SubjectMenuUI
+  _subjectDocument: {fileID: 75192348}
+--- !u!1 &111190338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111190340}
+  - component: {fileID: 111190339}
+  m_Layer: 0
+  m_Name: GameplayDebug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &111190339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111190338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e22c1b8d37e324439dc4a9777735b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Testing.GameplayDebug
+  GradeRange: {fileID: 11400000, guid: 4d5d8cef0614cbe48b69ef47b89c6d04, type: 2}
+  SubjectMenu: {fileID: 75192350}
+  CurrentDay: {x: 3, y: 1}
+  Examples:
+  - {fileID: 11400000, guid: c4770490a3a1d0e46b0eb6c99bc26236, type: 2}
+  - {fileID: 11400000, guid: 682247d1d74868648a5b98d2e38d623d, type: 2}
+  - {fileID: 11400000, guid: 18737322273537f4d915d088eeaedd97, type: 2}
+  Subjects:
+  - <SubjectName>k__BackingField: Classic Literature
+    _currentKnowledge: 9
+    <TotalPoints>k__BackingField: 1200
+    CurrentTotalPoints: 220
+    PointsEarned: 27
+    Assignments:
+    - <Name>k__BackingField: Homework 0
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 40
+      PointsEarned: 15
+    - <Name>k__BackingField: Homework 1
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 40
+      PointsEarned: 10
+    - <Name>k__BackingField: Homework 2
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 40
+      PointsEarned: 1
+    - <Name>k__BackingField: Homework 13
+      Status: 1
+      DaysLeft: 1
+      TimeSpent: 18
+      <PointsTotal>k__BackingField: 40
+      PointsEarned: 0
+    - <Name>k__BackingField: Homework 33
+      Status: 0
+      DaysLeft: 1
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 40
+      PointsEarned: 0
+    - <Name>k__BackingField: Project 1.3
+      Status: 1
+      DaysLeft: 0
+      TimeSpent: 118
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    - <Name>k__BackingField: Project 2.7
+      Status: 0
+      DaysLeft: 7
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    RegularExams:
+    - <Name>k__BackingField: Exam 0
+      Status: 2
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 1
+    - <Name>k__BackingField: Exam 1
+      Status: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    - <Name>k__BackingField: Exam 2
+      Status: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    FinalExam:
+      <Name>k__BackingField: Final Exam
+      Status: 0
+      <PointsTotal>k__BackingField: 500
+      PointsEarned: 0
+  - <SubjectName>k__BackingField: US History
+    _currentKnowledge: 10
+    <TotalPoints>k__BackingField: 1200
+    CurrentTotalPoints: 200
+    PointsEarned: 101
+    Assignments:
+    - <Name>k__BackingField: Homework 0
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 20
+      PointsEarned: 20
+    - <Name>k__BackingField: Homework 1
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 20
+      PointsEarned: 20
+    - <Name>k__BackingField: Homework 2
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 20
+      PointsEarned: 2
+    - <Name>k__BackingField: Homework 3
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 20
+      PointsEarned: 10
+    - <Name>k__BackingField: Homework 4
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 20
+      PointsEarned: 2
+    - <Name>k__BackingField: Project 1
+      Status: 1
+      DaysLeft: 2
+      TimeSpent: 143
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    - <Name>k__BackingField: Project 2
+      Status: 0
+      DaysLeft: 5
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    - <Name>k__BackingField: Project 3
+      Status: 0
+      DaysLeft: 5
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    RegularExams:
+    - <Name>k__BackingField: Exam 0
+      Status: 2
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 47
+    - <Name>k__BackingField: Exam 1
+      Status: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    - <Name>k__BackingField: Exam 2
+      Status: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    FinalExam:
+      <Name>k__BackingField: Final Exam
+      Status: 0
+      <PointsTotal>k__BackingField: 500
+      PointsEarned: 0
+  - <SubjectName>k__BackingField: Chemistry
+    _currentKnowledge: 15
+    <TotalPoints>k__BackingField: 1000
+    CurrentTotalPoints: 160
+    PointsEarned: 59
+    Assignments:
+    - <Name>k__BackingField: Homework 0
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 2
+    - <Name>k__BackingField: Homework 1
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 8
+    - <Name>k__BackingField: Homework 1
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 1
+    - <Name>k__BackingField: Homework 2
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 6
+    - <Name>k__BackingField: Homework 3
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 3
+    - <Name>k__BackingField: Homework 4
+      Status: 2
+      DaysLeft: 0
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 3
+    - <Name>k__BackingField: Homework 13
+      Status: 1
+      DaysLeft: 1
+      TimeSpent: 23
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 0
+    - <Name>k__BackingField: Homework 20.2
+      Status: 1
+      DaysLeft: 2
+      TimeSpent: 81
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 0
+    - <Name>k__BackingField: Homework 22
+      Status: 1
+      DaysLeft: 1
+      TimeSpent: 2
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 0
+    - <Name>k__BackingField: Homework 33
+      Status: 0
+      DaysLeft: 1
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 10
+      PointsEarned: 0
+    - <Name>k__BackingField: Project 3
+      Status: 0
+      DaysLeft: 5
+      TimeSpent: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    RegularExams:
+    - <Name>k__BackingField: Exam 0
+      Status: 2
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 36
+    - <Name>k__BackingField: Exam 1
+      Status: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    - <Name>k__BackingField: Exam 2
+      Status: 0
+      <PointsTotal>k__BackingField: 100
+      PointsEarned: 0
+    FinalExam:
+      <Name>k__BackingField: Final Exam
+      Status: 0
+      <PointsTotal>k__BackingField: 500
+      PointsEarned: 0
+--- !u!4 &111190340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111190338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1903,6 +2184,7 @@ SceneRoots:
   - {fileID: 1960056631}
   - {fileID: 1928665120}
   - {fileID: 1353087016}
+  - {fileID: 111190340}
   - {fileID: 608880746}
   - {fileID: 1680077684}
   - {fileID: 1317292996}

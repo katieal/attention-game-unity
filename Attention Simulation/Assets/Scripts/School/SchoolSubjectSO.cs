@@ -35,9 +35,12 @@ namespace Emyra.FocusGame.School
             new PointDistribution() { Category = Category.Exam, Count = 3, PointValue = 100 },
             new PointDistribution() { Category = Category.Final, Count = 1, PointValue = 500 }
         };
+        [TabGroup("Grades")]
+        [ShowInInspector][ReadOnly] public int CurrentTotalDistributed { get { return GetTotalDistributedPoints(); } }
 
         [TabGroup("Assignments")]
         [Tooltip("Assignment schedule")]
+        [RequiredListLength(nameof(AssignmentLength))]
         public List<AssignmentSO> Assignments = new List<AssignmentSO>();
 
         [TabGroup("Exams")]
@@ -57,6 +60,16 @@ namespace Emyra.FocusGame.School
             }
             return total == this.TotalPoints;
         }
+        private int GetTotalDistributedPoints()
+        {
+            int total = 0;
+            foreach (PointDistribution weight in Weights)
+            {
+                total += weight.TotalPoints;
+            }
+            return total;
+        }
+        public int AssignmentLength { get { return Weights[0].Count + Weights[1].Count; } }
         #endregion
 
         public int GetPointDistribution(string categoryName)
@@ -87,6 +100,7 @@ namespace Emyra.FocusGame.School
         [ShowInInspector][HorizontalGroup(Width = 0.3f, LabelWidth = 70, Gap = 8)] public int TotalPoints { get { return Count * PointValue; } }
     }
 
+    [Serializable] // serializable for debug
     public class SubjectInstance
     {
         // TODO in future note: add "modifier" SOs to increase/decrease difficulty
@@ -102,14 +116,14 @@ namespace Emyra.FocusGame.School
         /// <summary>
         /// Display name - the specific course within a subject category. Ex: Math/Geometry)
         /// </summary>
-        public string SubjectName { get; private set; }
+        [field: SerializeField][field: ReadOnly] public string SubjectName { get; private set; }
         public string Description { get; private set; }
         public DifficultyLevel Difficulty { get; private set; }
 
         /// <summary>
         /// Player's current accumulated knowledge percentage out of 100%.
         /// </summary>
-        private int _currentKnowledge;
+        [field: SerializeField] private int _currentKnowledge;
         /// <summary>
         /// Player's current accumulated knowledge percentage out of 100%.
         /// </summary>
@@ -119,9 +133,18 @@ namespace Emyra.FocusGame.School
             set { _currentKnowledge = Mathf.Clamp(value, 0, 100); }
         }
 
-        public int TotalPoints { get; private set; }
-        // current grade
-        public int CurrentPoints;
+        /// <summary>
+        /// The total number of points for the entire subject.
+        /// </summary>
+        [field: SerializeField][field: ReadOnly] public int TotalPoints { get; private set; }
+        /// <summary>
+        /// The current maximum number of points player could have earned.
+        /// </summary>
+        public int CurrentTotalPoints;
+        /// <summary>
+        /// The current number of points player has earned.
+        /// </summary>
+        public int PointsEarned;
 
         public List<AssignmentInstance> Assignments;
         public List<ExamInstance> RegularExams;
@@ -130,13 +153,15 @@ namespace Emyra.FocusGame.School
         // constructor
         public SubjectInstance(SchoolSubjectSO data)
         {
+            this.Id = data.Id;
             this.SubjectType = data.SubjectType;
             this.SubjectName = data.SubjectName;
             this.Description = data.Description;
             this.Difficulty = data.Difficulty;
             this.CurrentKnowledge = 0;
             this.TotalPoints = data.TotalPoints;
-            this.CurrentPoints = 0;
+            this.CurrentTotalPoints = 0;
+            this.PointsEarned = 0;
 
             // add assignments with corresponding point values
             this.Assignments = new List<AssignmentInstance>();

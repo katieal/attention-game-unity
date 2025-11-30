@@ -1,0 +1,61 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/Menus/SubjectMenuStyle.uss?fileID=7433441132597879392&amp;guid=6ca5320e8b9dc444a888989f7afabfd5&amp;type=3#SubjectMenuStyle" />
+    <Style src="project://database/Assets/Scripts/UI/Menus/AssignmentListStyle.uss?fileID=7433441132597879392&amp;guid=3796b2e06530af34dacb3b50616fc1fa&amp;type=3#AssignmentListStyle" />
+    <ui:VisualElement style="flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:VisualElement name="subject-menu" style="flex-grow: 0; width: 1400px; height: 600px; background-color: rgb(166, 166, 166); flex-direction: row; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px;">
+            <ui:VisualElement style="flex-grow: 0; width: 300px;">
+                <ui:ToggleButtonGroup label="Subjects" name="subject-toggle-group" value="000001" focusable="false">
+                    <ui:Button text="Button" />
+                    <ui:Button text="Button" />
+                    <ui:Button text="Button" />
+                    <ui:Button text="Button" />
+                    <ui:Button text="Button" />
+                    <ui:Button text="Button" />
+                </ui:ToggleButtonGroup>
+            </ui:VisualElement>
+            <ui:VisualElement name="subject-content-element" data-source-type="Emyra.FocusGame.UI.SubjectViewDataSource, Assembly-CSharp" style="flex-grow: 1;">
+                <ui:Label text="Subject Name" name="subject-name-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" view-data-key="subject-name" binding-path="SubjectStats.SubjectName" style="-unity-text-align: lower-center; font-size: 36px; margin-top: 20px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-bottom-width: 1px; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; align-self: center; padding-right: 50px; padding-left: 50px; padding-bottom: 0; margin-bottom: 20px;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="SubjectStats.SubjectName" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:VisualElement name="stats-container" style="flex-grow: 0; height: 60px; flex-direction: row; justify-content: space-evenly; margin-right: 30px; margin-left: 30px; background-color: rgb(229, 204, 174); border-left-color: rgba(0, 0, 0, 0.37); border-right-color: rgba(0, 0, 0, 0.37); border-top-color: rgba(0, 0, 0, 0.37); border-bottom-color: rgba(0, 0, 0, 0.37); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; font-size: 20px;">
+                    <ui:VisualElement name="knowledge-element" style="flex-grow: 0; flex-direction: row;">
+                        <ui:Label text="Knowledge:" name="knowledge-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: middle-right; width: 120px;" />
+                        <ui:Label text="5/100%" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="knowledge-text" style="width: 120px; -unity-text-align: middle-left;">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="SubjectStats.Knowledge" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="points-element" style="flex-grow: 0; flex-direction: row;">
+                        <ui:Label text="Total Points Earned:" name="points-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: middle-right; width: 170px;" />
+                        <ui:Label text="175/200" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="points-text" style="width: 120px; -unity-text-align: middle-left;">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="SubjectStats.Points" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="grade-element" style="flex-grow: 0; flex-direction: row;">
+                        <ui:Label text="Grade:" name="grade-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: middle-right; width: 70px;" />
+                        <ui:Label text="87.5% (B+)" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="grade-text" style="width: 120px; -unity-text-align: middle-left;">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="SubjectStats.Grade" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="assignments-container" style="flex-direction: column; margin-top: 20px; margin-bottom: 20px; margin-right: 20px; margin-left: 20px; background-color: rgb(193, 209, 212); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); flex-grow: 1;">
+                    <ui:Label text="Grade History" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: lower-center; font-size: 28px; margin-top: 12px;" />
+                    <ui:MultiColumnListView name="assignments-list" virtualization-method="DynamicHeight" binding-source-selection-mode="AutoAssign" selection-type="None" allow-add="false" allow-remove="false" style="flex-grow: 1;">
+                        <ui:Columns reorderable="false" resizable="false">
+                            <ui:Column name="name-column" title="Name" sortable="false" optional="false" resizable="false" stretchable="true" width="600px" min-width="600px" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTableNameCellTemplate.uxml?fileID=9197481963319205126&amp;guid=a7f6326ef6a0c8b4eab7a3ea12266bd3&amp;type=3#AssignmentTableNameCellTemplate" />
+                            <ui:Column name="points-column" title="Points Earned" stretchable="true" sortable="false" optional="false" resizable="false" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTablePointsCellTemplate.uxml?fileID=9197481963319205126&amp;guid=a35fef5bb046ae8418c2dd94872f5d29&amp;type=3#AssignmentTablePointsCellTemplate" />
+                            <ui:Column name="grade-column" title="Grade" stretchable="true" sortable="false" optional="false" resizable="false" width="100px" min-width="100px" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTableGradeCellTemplate.uxml?fileID=9197481963319205126&amp;guid=80eb55814c388984c90a268795434ca2&amp;type=3#AssignmentTableGradeCellTemplate" />
+                        </ui:Columns>
+                    </ui:MultiColumnListView>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -29,12 +29,13 @@ namespace Emyra.FocusGame.School
 
     public enum ExamType { Regular, Final }
 
-    public class ExamInstance
+    [Serializable]
+    public class ExamInstance // serializable for debug only!!
     {
         /// <summary>
         /// Display name
         /// </summary>
-        public string Name { get; private set; }
+        [field: SerializeField][field: ReadOnly] public string Name { get; private set; }
         public string Description { get; private set; }
         public ExamType Type { get; private set; }
 
@@ -59,7 +60,7 @@ namespace Emyra.FocusGame.School
         /// <summary>
         /// Total points that can be earned in this exam.
         /// </summary>
-        public int PointsTotal { get; private set; }
+        [field: SerializeField][field: ReadOnly] public int PointsTotal { get; private set; }
 
         /// <summary>
         /// Points earned in this exam (aka grade received).

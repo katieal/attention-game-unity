@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" data-source-type="Emyra.FocusGame.UI.AssignmentViewDataSource, Assembly-CSharp" style="-unity-text-align: upper-center; white-space: normal; font-size: 18px;">
+        <Bindings>
+            <ui:DataBinding property="text" data-source-path="AssignmentName" binding-mode="ToTarget" />
+        </Bindings>
+    </ui:Label>
+</ui:UXML>

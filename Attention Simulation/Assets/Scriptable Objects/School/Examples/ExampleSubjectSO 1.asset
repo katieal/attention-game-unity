@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488cdd3452240104ea92b4b64767047a, type: 3}
+  m_Name: ExampleSubjectSO 1
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.School.SchoolSubjectSO
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Id: example_subject1
+  SubjectType: 2
+  SubjectName: Classic Literature
+  Description: Study classic works of literature!
+  Difficulty: 3
+  TotalPoints: 1200
+  Weights:
+  - Category: 0
+    Count: 5
+    PointValue: 40
+  - Category: 1
+    Count: 2
+    PointValue: 100
+  - Category: 2
+    Count: 3
+    PointValue: 100
+  - Category: 3
+    Count: 1
+    PointValue: 500
+  Assignments:
+  - {fileID: 11400000, guid: 6fc928961afcf364a878d589aed83239, type: 2}
+  - {fileID: 11400000, guid: 19566d32c26915446b759c20f77808eb, type: 2}
+  - {fileID: 11400000, guid: 10e12f59124749f4a89c8ff2e3552f64, type: 2}
+  - {fileID: 11400000, guid: 9f1d1f8dd9c28a94ea39c5d4d8be3b8e, type: 2}
+  - {fileID: 11400000, guid: 690d7a27a8211cb4da1c0091a170184d, type: 2}
+  - {fileID: 11400000, guid: 525a8f80d91659b4e8714ba4f4a68efb, type: 2}
+  - {fileID: 11400000, guid: 8fcf56280c9641c4ab749c138944d337, type: 2}
+  RegularExams:
+  - {fileID: 11400000, guid: 3e92f8a8f0d42c34dac339a7b704c509, type: 2}
+  - {fileID: 11400000, guid: c5b3c6368ffbe3d4d9bf3a541957386a, type: 2}
+  - {fileID: 11400000, guid: d54df471fb7d93c4094dd6f0a40505f7, type: 2}
+  FinalExam: {fileID: 11400000, guid: 31d373abac2303c44a539633fd7e550e, type: 2}
