@@ -1,0 +1,22 @@
+:root {
+}
+
+.emyra-schedule-element {
+    margin-left: 4px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 40px;
+    margin-right: 30px;
+}
+
+.emyra-standard_text {
+    flex-grow: 1;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Anton.ttf?fileID=12800000&guid=997a43b767814dd0a7642ec9b78cba41&type=3#Anton");
+    font-size: 32px;
+    -unity-text-align: middle-left;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}

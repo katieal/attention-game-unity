@@ -1,9 +1,11 @@
 using Emyra.FocusGame.EventChannel;
 using Emyra.FocusGame.GameData;
+using Emyra.FocusGame.School;
 using Emyra.FocusGame.Managers;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Emyra.FocusGame.Testing
 {
@@ -29,25 +31,7 @@ namespace Emyra.FocusGame.Testing
         #endregion
 
 
-
-        [Button]
-        public void GetSubjectString(Subject subject)
-        {
-            string name = subject.ToString();
-
-            // excluding the first character, insert a space before each capital letter
-            for (int i = 1; i < name.Length; i++)
-            {
-                if (Char.IsUpper(name[i]))
-                {
-                    name = name.Insert(i, " ");
-                    i++;
-                    Debug.Log("inserting space");
-                }
-            }
-
-            Debug.Log(name);
-        }
+        
 
 
         #region GameInfo Testing 

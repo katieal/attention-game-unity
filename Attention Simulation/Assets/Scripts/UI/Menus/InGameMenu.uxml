@@ -1,0 +1,48 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;" />
+    <ui:VisualElement name="subject-content-element" style="flex-grow: 1;">
+        <ui:Label text="Subject Name" name="subject-name-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" view-data-key="subject-name" binding-path="SubjectStats.SubjectName" data-source-path="SubjectStats" style="-unity-text-align: lower-center; font-size: 36px; margin-top: 20px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-bottom-width: 1px; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; align-self: center; padding-right: 50px; padding-left: 50px; padding-bottom: 0; margin-bottom: 20px;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="SubjectName" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+        <ui:VisualElement name="stats-container" data-source-path="SubjectStats" style="flex-grow: 0; height: 60px; flex-direction: row; justify-content: space-evenly; margin-right: 30px; margin-left: 30px; background-color: rgb(229, 204, 174); border-left-color: rgba(0, 0, 0, 0.37); border-right-color: rgba(0, 0, 0, 0.37); border-top-color: rgba(0, 0, 0, 0.37); border-bottom-color: rgba(0, 0, 0, 0.37); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+            <ui:VisualElement name="knowledge-element" style="flex-grow: 0; flex-direction: row;">
+                <ui:Label text="Knowledge:" name="knowledge-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: middle-right; width: 120px;" />
+                <ui:Label text="5/100%" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="knowledge-text" style="width: 120px; -unity-text-align: middle-left;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Knowledge" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+            <ui:VisualElement name="points-element" style="flex-grow: 0; flex-direction: row;">
+                <ui:Label text="Total Points Earned:" name="points-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: middle-right; width: 140px;" />
+                <ui:Label text="175/200" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="points-text" style="width: 120px; -unity-text-align: middle-left;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Points" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+            <ui:VisualElement name="grade-element" style="flex-grow: 0; flex-direction: row;">
+                <ui:Label text="Grade:" name="grade-label" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: middle-right; width: 60px;" />
+                <ui:Label text="87.5% (B+)" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="grade-text" style="width: 120px; -unity-text-align: middle-left;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Grade" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="assignments-container" style="flex-direction: column; margin-top: 20px; margin-bottom: 20px; margin-right: 20px; margin-left: 20px; background-color: rgb(193, 209, 212); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); flex-grow: 1;">
+            <ui:Label text="Grade History" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="-unity-text-align: lower-center; font-size: 28px; margin-top: 12px;" />
+            <ui:MultiColumnListView virtualization-method="DynamicHeight" show-border="false" show-add-remove-footer="false" allow-remove="false" allow-add="true" show-bound-collection-size="false" focusable="false" name="assignments-list" binding-source-selection-mode="AutoAssign" style="flex-grow: 1;">
+                <ui:Columns stretch-mode="GrowAndFill" resize-preview="false" resizable="false" reorderable="false">
+                    <ui:Column name="name-column" title="Name" stretchable="true" resizable="false" optional="false" sortable="false" width="400px" min-width="400px" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTableNameCellTemplate.uxml?fileID=9197481963319205126&amp;guid=f7fa0e2f878bb9e4fa9219eb636dd799&amp;type=3#AssignmentTableNameCellTemplate" />
+                    <ui:Column name="date-collumn" title="Date Submitted" stretchable="true" sortable="false" optional="false" resizable="false" width="150px" min-width="100px" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTableDateCellTemplate.uxml?fileID=9197481963319205126&amp;guid=cad9c207b770497479f72d3fd33a6ef3&amp;type=3#AssignmentTableDateCellTemplate" visible="false" />
+                    <ui:Column name="points-column" title="Points Earned" sortable="false" stretchable="true" optional="false" resizable="false" width="150px" min-width="100px" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTablePointsCellTemplate.uxml?fileID=9197481963319205126&amp;guid=a35fef5bb046ae8418c2dd94872f5d29&amp;type=3#AssignmentTablePointsCellTemplate" />
+                    <ui:Column name="grade-column" title="Grade" width="100px" sortable="false" optional="false" resizable="false" stretchable="true" min-width="100px" max-width="8388608px" cell-template="project://database/Assets/Scripts/UI/Menus/CurrentAssignmentViewTemplates/AssignmentTableGradeCellTemplate.uxml?fileID=9197481963319205126&amp;guid=80eb55814c388984c90a268795434ca2&amp;type=3#AssignmentTableGradeCellTemplate" />
+                </ui:Columns>
+                <ui:SortColumnDescriptions />
+            </ui:MultiColumnListView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

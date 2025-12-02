@@ -1,0 +1,7 @@
+:root {
+}
+
+.unity-multi-column-header__column__content--has-title > #unity-multi-column-header-column-title {
+    -unity-text-align: lower-center;
+    font-size: 22px;
+}

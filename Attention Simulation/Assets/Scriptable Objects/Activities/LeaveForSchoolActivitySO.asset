@@ -16,4 +16,5 @@ MonoBehaviour:
   DisplayName: Leave For School
   ButtonName: leave-button
   HasFixedDuration: 1
-  DefaultDuration: 0
+  HasFixedStartTime: 0
+  StartTime: 0

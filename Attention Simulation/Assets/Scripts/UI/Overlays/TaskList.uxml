@@ -1,0 +1,52 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/CustomThemes/emyra_schedule_element.uss?fileID=7433441132597879392&amp;guid=53b4ae2b443afc848b539eb7178e525b&amp;type=3#emyra_schedule_element" />
+    <Style src="project://database/Assets/UI%20Toolkit/CustomThemes/emyra-standard_text.uss?fileID=7433441132597879392&amp;guid=bbf1525628eb7164ea10518d2e58ba8f&amp;type=3#emyra-standard_text" />
+    <ui:VisualElement name="VisualElement" picking-mode="Ignore" class="emyra-standard_text">
+        <ui:VisualElement name="class-schedule" data-source-type="Emyra.FocusGame.UI.SchoolScheduleDataSource, Assembly-CSharp" style="width: 325px; height: 400px; margin-left: 20px; display: flex; visibility: visible;">
+            <ui:Foldout text="Class Schedule" name="schedule-foldout" value="true" style="background-color: rgba(0, 0, 0, 0.12);">
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-0" data-source-path="SubjectDataList[0]" class="emyra-schedule-element" style="flex-shrink: 1;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-1" data-source-path="SubjectDataList[1]" class="emyra-schedule-element">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-2" data-source-path="SubjectDataList[2]" class="emyra-schedule-element">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-3" data-source-path="SubjectDataList[3]" class="emyra-schedule-element">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-4" data-source-path="SubjectDataList[4]" class="emyra-schedule-element">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-5" data-source-path="SubjectDataList[5]" class="emyra-schedule-element">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Math" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" name="class-label-6" data-source-path="SubjectDataList[6]" class="emyra-schedule-element" style="margin-bottom: 10px;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="style.backgroundColor" data-source-path="Color" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:Foldout>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
