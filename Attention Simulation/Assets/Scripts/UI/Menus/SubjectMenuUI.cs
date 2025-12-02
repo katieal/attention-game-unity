@@ -1,3 +1,4 @@
+using Emyra.FocusGame.EventChannel;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,20 @@ namespace Emyra.FocusGame.UI
 {
     public class SubjectMenuUI : MonoBehaviour
     {
-        public UIDocument _subjectDocument;
+        [Title("References")]
+        [SerializeField] private UIDocument _subjectDocument;
 
-        public SubjectViewDataSource SubjectDataSource;
+        [TitleGroup("Events")]
+        [FoldoutGroup("Events/Listening to Events")]
+        [SerializeField] private VoidEventSO _subjectMenuInputEvent;
 
+        // ui components
         private ToggleButtonGroup _buttonGroup;
 
+        public SubjectViewDataSource SubjectDataSource;
         private List<string> _subjectNames;
         private List<SubjectViewData> _subjectData;
+        private bool _isMenuVisible;
 
         private void Awake()
         {
@@ -25,27 +32,30 @@ namespace Emyra.FocusGame.UI
             {
                 "Art Fundamentals", "Geometry", "Chemistry", "US History", "World History", "AP Literature", "Spanish II", "Band", "Psychology"
             };
+
+
+            // assign data sources
             _subjectData = new List<SubjectViewData>(7);
-
             SubjectDataSource = new SubjectViewDataSource();
-
-
-
-            _buttonGroup = _subjectDocument.rootVisualElement.Q("subject-toggle-group") as ToggleButtonGroup;
-            _buttonGroup.RegisterValueChangedCallback(OnSelectedSubjectChanged);
-
-
-
             _subjectDocument.rootVisualElement.Q("subject-content-element").dataSource = SubjectDataSource;
             (_subjectDocument.rootVisualElement.Q("assignments-list") as MultiColumnListView).itemsSource = SubjectDataSource.Assignments;
+
+            // register toggle button group callback
+            _buttonGroup = _subjectDocument.rootVisualElement.Q("subject-toggle-group") as ToggleButtonGroup;
+            _buttonGroup.RegisterValueChangedCallback(OnSelectedSubjectChanged);
         }
 
         private void OnEnable()
         {
-            
+            // menu should be hidden by default
+            HideMenu();
+            _isMenuVisible = false;
+
+            _subjectMenuInputEvent.OnInvokeEvent += ToggleMenu;
         }
         private void OnDisable()
         {
+            _subjectMenuInputEvent.OnInvokeEvent -= ToggleMenu;
             _buttonGroup.UnregisterValueChangedCallback(OnSelectedSubjectChanged);
         }
 
@@ -60,6 +70,20 @@ namespace Emyra.FocusGame.UI
         }
 
         #region Callbacks
+        private void ToggleMenu()
+        {
+            if (_isMenuVisible)
+            {
+                HideMenu();
+                _isMenuVisible = false;
+            }
+            else
+            {
+                ShowMenu();
+                _isMenuVisible = true;
+            }
+        }
+
         [Button]
         public void ShowMenu()
         {
@@ -70,9 +94,9 @@ namespace Emyra.FocusGame.UI
         [Button]
         public void HideMenu()
         {
-            _subjectDocument.rootVisualElement.SetEnabled(false);
             _subjectDocument.rootVisualElement.visible = false;
             _buttonGroup.UnregisterValueChangedCallback(OnSelectedSubjectChanged);
+            _subjectDocument.rootVisualElement.SetEnabled(false);
         }
 
         private void OnSelectedSubjectChanged(ChangeEvent<ToggleButtonGroupState> evt)

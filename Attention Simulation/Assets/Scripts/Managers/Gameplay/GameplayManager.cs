@@ -1,11 +1,7 @@
 using Emyra.FocusGame.EventChannel;
-using Emyra.FocusGame.Locations;
 using Emyra.FocusGame.GameData;
-using Emyra.FocusGame.School;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
-using System.Collections.Generic;
 
 namespace Emyra.FocusGame.Managers
 {
@@ -16,29 +12,30 @@ namespace Emyra.FocusGame.Managers
 
     public class GameplayManager : MonoBehaviour
     {
-        [Title("Gameplay Schedule")]
-        public LocationSO[] ScheduleList;
-        public SchoolSubjectSO[] SchoolScheduleList;
+        public LocationSO[] Schedule;
 
         [TitleGroup("Events")]
         [FoldoutGroup("Events/Listening to Events")]
         [SerializeField] private VoidEventSO _startGameEvent;
+        [FoldoutGroup("Events/Listening to Events")]
         [SerializeField] private ActivityIntEventSO _activitySelectedEvent;
+
         [FoldoutGroup("Events/Invoked Events")]
+<<<<<<< Updated upstream
+=======
         [SerializeField] private StringListEventSO _schoolScheduleEvent;
+        [FoldoutGroup("Events/Invoked Events")]
+>>>>>>> Stashed changes
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
+        [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private IntEventSO _addTimeEvent;
+        [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private IntEventSO _setTimeEvent;
+        [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private VoidEventSO _sleepEvent;
 
-        /// <summary>
-        /// Index of current place in schedule list
-        /// </summary>
-        private int _scheduleIndex;
-        /// <summary>
-        /// Index of current school subject in schedule
-        /// </summary>
-        private int _schoolIndex;
+        // current index in schedule
+        private int _cIndex;
 
         private void OnEnable()
         {
@@ -54,17 +51,6 @@ namespace Emyra.FocusGame.Managers
         private void OnStartGame()
         {
             RestartSchedule();
-
-            // send schedule of school subjects
-            List<string> subjectIds = new List<string>();
-            foreach (SchoolSubjectSO subject in SchoolScheduleList)
-            {
-                subjectIds.Add(subject.Id);
-            }
-            _schoolScheduleEvent.InvokeEvent(subjectIds);
-
-            // send starting location
-            BroadcastLocation();
         }
 
         // send -1 for default duration
@@ -76,20 +62,19 @@ namespace Emyra.FocusGame.Managers
                 // sleep until the start of the next/current morning
                 _sleepEvent.InvokeEvent();
                 RestartSchedule();
-                BroadcastLocation();
             }
             else if (activity == ActivityName.LeaveForSchool)
             {
                 // set time to school start time
                 _setTimeEvent.InvokeEvent(DayManager.Instance.SchoolStartTime);
-                BroadcastNextLocation();
+                SendNextLocation();
             }
             // classroom activities always last 1 hr (the entire duration)
-            else if (ScheduleList[_scheduleIndex].Room == Room.Classroom)
+            else if (Schedule[_cIndex].Room == Room.Classroom)
             {
                 // advance time by 60 mins
                 _addTimeEvent.InvokeEvent(60); // keeping duration hard coded here for now
-                BroadcastNextLocation();
+                SendNextLocation();
             }
             else
             {
@@ -100,40 +85,24 @@ namespace Emyra.FocusGame.Managers
         
         private void RestartSchedule()
         {
-            _scheduleIndex = 0;
-            _schoolIndex = 0;
+            _cIndex = 0;
+            // broadcast next location
+            _locationChangedEvent.InvokeEvent(Schedule[_cIndex].GetInfo());
         }
 
-        private void BroadcastNextLocation()
+        private void SendNextLocation()
         {
-            if (_scheduleIndex + 1 == ScheduleList.Length)
+            if (_cIndex + 1 == Schedule.Length)
             {
                 Debug.Log("end of schedule!");
                 return;
             }
 
-            // increment school index if in school
-            if (ScheduleList[_scheduleIndex].Place == Place.School) { _schoolIndex++; }
-            // go to next location in schedule
-            _scheduleIndex++;
-
-            BroadcastLocation();
-        }
-
-        private void BroadcastLocation()
-        {
-            // get location info
-            LocationInfo info = ScheduleList[_scheduleIndex].GetInfo();
-            // insert subject if needed
-            if (ScheduleList[_scheduleIndex].Room == Room.Classroom)
-            {
-                info.SubjectName = SchoolScheduleList[_schoolIndex].SubjectName;
-                //info.SubjectIndex = _schoolIndex;
-            }
-
+            _cIndex++;
             // broadcast next location
-            _locationChangedEvent.InvokeEvent(info);
+            _locationChangedEvent.InvokeEvent(Schedule[_cIndex].GetInfo());
         }
+
 
     }
 }
