@@ -1,5 +1,6 @@
 using Emyra.FocusGame.EventChannel;
 using Emyra.FocusGame.School;
+using Emyra.FocusGame.UI;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,23 @@ namespace Emyra.FocusGame.Managers
                 if (subjectId == "break_lunch") { continue; }
                 _subjects.Add(GameData.SchoolSubjectDatabase.Instance.GetSubjectInstance(subjectId));
             }
+        }
+
+        private void SendSubjectViewData()
+        {
+            List<SubjectViewData> dataList = new List<SubjectViewData>();
+
+        }
+
+        private void GetSubjectViewData(SubjectInstance subject)
+        {
+
+            SubjectViewData data = new SubjectViewData()
+            {
+                SubjectName = subject.SubjectName,
+                Knowledge = subject.CurrentKnowledge + "%",
+                Points = subject.PointsEarned + "/" + subject.TotalPoints
+            };
         }
 
         private float CalculateScore(Vector2Int knowledgeRange, DifficultyLevel difficulty, int currentKnowledge)
