@@ -1,4 +1,5 @@
 using Emyra.FocusGame.EventChannel;
+using Emyra.FocusGame.Locations;
 using Emyra.FocusGame.GameData;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -21,11 +22,9 @@ namespace Emyra.FocusGame.Managers
         [SerializeField] private ActivityIntEventSO _activitySelectedEvent;
 
         [FoldoutGroup("Events/Invoked Events")]
-<<<<<<< Updated upstream
-=======
         [SerializeField] private StringListEventSO _schoolScheduleEvent;
         [FoldoutGroup("Events/Invoked Events")]
->>>>>>> Stashed changes
+
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
         [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private IntEventSO _addTimeEvent;
