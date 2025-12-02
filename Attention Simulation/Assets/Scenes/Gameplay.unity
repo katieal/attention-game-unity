@@ -119,8 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!1 &75192346
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +469,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
 --- !u!1 &131541808
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +667,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244105210}
   m_CullTransparentMesh: 1
+--- !u!1 &285566577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285566579}
+  - component: {fileID: 285566578}
+  m_Layer: 5
+  m_Name: TestUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &285566578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285566577}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: de53c1923c0eced4ca0bd8b2e5da225c, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: ab5161e7edf16294da1bccc56fb4e5fc, type: 3}
+  m_SortingOrder: 10
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &285566579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285566577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &334072952
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +753,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 625947192}
+  - {fileID: 741095459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &334072954
@@ -715,15 +768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d652c9a85f1138f4997517df9ca124fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Managers.GameplayManager
-  Schedule:
-  - {fileID: 11400000, guid: cbca0bbb67433e649984fa0803e6163c, type: 2}
-  - {fileID: 11400000, guid: e019bae6b42d128429c9d86bfdb0ac8e, type: 2}
-  - {fileID: 11400000, guid: 47ef28719a8400441957fa039d330718, type: 2}
-  - {fileID: 11400000, guid: 11af75c1baee444478e7e1efdf320747, type: 2}
-  - {fileID: 11400000, guid: b88992b570392cb468510cfbc16d8708, type: 2}
-  - {fileID: 11400000, guid: 415c011a1b1a90d41a55acb5ca70b1d2, type: 2}
+  Schedule: []
   _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
   _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
+  _schoolScheduleEvent: {fileID: 11400000, guid: 5452aa9e584724543901ae913729d40a, type: 2}
   _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
   _addTimeEvent: {fileID: 11400000, guid: b105ff6ed94ca9f45a3b50daf582d466, type: 2}
   _setTimeEvent: {fileID: 11400000, guid: 6831ae0f68fcafa4b9160d3ae9c63e30, type: 2}
@@ -950,8 +998,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634081597}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
-=======
 --- !u!1 &741095458
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1043,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Managers.SchoolManager
   _schoolScheduleEvent: {fileID: 11400000, guid: 5452aa9e584724543901ae913729d40a, type: 2}
->>>>>>> Stashed changes
 --- !u!1 &786286764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1161,77 @@ MonoBehaviour:
   _startCanvas: {fileID: 131541808}
   _startButton: {fileID: 244105212}
   _startNewGameEvent: {fileID: 11400000, guid: b303f67c386fcf342843cff7f48c6b26, type: 2}
+--- !u!1 &1106092599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106092602}
+  - component: {fileID: 1106092601}
+  - component: {fileID: 1106092600}
+  m_Layer: 5
+  m_Name: TaskListUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1106092600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106092599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0afaec9e9fb9d47ae2d08a6263f3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.UI.TaskListUI
+  _taskDocument: {fileID: 1106092601}
+  _schoolScheduleEvent: {fileID: 11400000, guid: 5452aa9e584724543901ae913729d40a, type: 2}
+  _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
+--- !u!114 &1106092601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106092599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: de53c1923c0eced4ca0bd8b2e5da225c, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: cdefebebee67e4d4bbfe2aeba0b7e1a7, type: 3}
+  m_SortingOrder: 3
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &1106092602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106092599}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180297298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,7 +1491,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: de53c1923c0eced4ca0bd8b2e5da225c, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 78e2a43d8fdc1874497db8791e9f155d, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -1919,7 +2035,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: de53c1923c0eced4ca0bd8b2e5da225c, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: c299cda9d42e7304db7f221f8f9c2a26, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -2052,10 +2168,14 @@ SceneRoots:
   - {fileID: 1960056631}
   - {fileID: 1928665120}
   - {fileID: 1353087016}
+  - {fileID: 111190340}
   - {fileID: 608880746}
   - {fileID: 1680077684}
   - {fileID: 1317292996}
   - {fileID: 2092246190}
+  - {fileID: 1106092602}
+  - {fileID: 75192349}
   - {fileID: 1621096201}
   - {fileID: 786286768}
   - {fileID: 2095576833}
+  - {fileID: 285566579}

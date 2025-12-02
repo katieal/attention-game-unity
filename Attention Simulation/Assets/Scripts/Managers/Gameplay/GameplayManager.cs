@@ -24,7 +24,6 @@ namespace Emyra.FocusGame.Managers
         [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private StringListEventSO _schoolScheduleEvent;
         [FoldoutGroup("Events/Invoked Events")]
-
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
         [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private IntEventSO _addTimeEvent;
