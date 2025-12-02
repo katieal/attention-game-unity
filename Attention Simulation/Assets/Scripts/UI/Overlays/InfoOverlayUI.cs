@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
+using RoomInfo = Emyra.FocusGame.Locations.RoomInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -74,12 +74,12 @@ namespace Emyra.FocusGame.UI
         {
             OverlayData.Time = GetTimeString(time);
         }
-        private void OnLocationChanged(LocationInfo info)
+        private void OnLocationChanged(RoomInfo info)
         {
             OverlayData.Place = info.Place.ToString();
 
             // if player is in a classroom, room label displays current subject instead of room name
-            if (info.Room == Room.Classroom)
+            if (info.Room == RoomName.Classroom)
             {
                 OverlayData.Room = info.SubjectName;
             }

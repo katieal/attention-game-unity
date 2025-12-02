@@ -18,11 +18,11 @@ namespace Emyra.FocusGame.Locations
         Relax = 1 << 6,
         Sleep = 1 << 7,
         LeaveForSchool = 1 << 8,
+        Move = 1 << 9,
 
-        Classroom = ListenYes | ListenNo | Nap,
-        Bedroom = Work | Study | Nap | Relax | Sleep
+        Classroom = ListenYes | ListenNo | Nap | Move,
+        Bedroom = Work | Study | Nap | Relax | Sleep | Move
     }
-
 
     // bind each ActivityType with a display name and UIToolkit button name
     [CreateAssetMenu(fileName = "ActivitySO", menuName = "Scriptable Objects/ActivitySO")]

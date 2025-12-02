@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Classroom
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.Simulator.GameData.ActivitySO
   Place: 1
-  Room: 0
-  Subject: 3
-  Activities: 19
+  RoomName: 16
+  Activities: 531
+  ConnectedRooms: 120

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BedroomMorning
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.GameData.LocationSO
   Place: 0
-  Room: 3
-  Subject: 0
-  Activities: 332
+  RoomName: 1
+  Activities: 988
+  ConnectedRooms: 14

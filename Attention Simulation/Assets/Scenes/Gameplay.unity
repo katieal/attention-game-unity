@@ -768,9 +768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d652c9a85f1138f4997517df9ca124fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Managers.GameplayManager
-  Schedule: []
+  StartingLocation: {fileID: 0}
+  ClassroomSO: {fileID: 0}
+  SchoolScheduleList: []
   _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
-  _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
+  _activitySelectedEvent: {fileID: 0}
   _schoolScheduleEvent: {fileID: 11400000, guid: 5452aa9e584724543901ae913729d40a, type: 2}
   _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
   _addTimeEvent: {fileID: 11400000, guid: b105ff6ed94ca9f45a3b50daf582d466, type: 2}
@@ -1965,6 +1967,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acf88c700224cd94489c6c065e5016fa, type: 2}
   - {fileID: 11400000, guid: d628b85c2d9d71b4f8723608c599fddf, type: 2}
   - {fileID: 11400000, guid: 3f2f8a332f6e8e544849ec089017d6ab, type: 2}
+  - {fileID: 11400000, guid: a66f3a9684bb58d4ab183178d58c48e8, type: 2}
 --- !u!4 &1960056631
 Transform:
   m_ObjectHideFlags: 0
@@ -2074,7 +2077,7 @@ MonoBehaviour:
   _durationPopup: {fileID: 2092246192}
   _locationChangedEvent: {fileID: 11400000, guid: 2b3d533904241804c961bde881bd8a78, type: 2}
   _startGameEvent: {fileID: 11400000, guid: 243974db6eeaf0e449b477b2e07d51f2, type: 2}
-  _activitySelectedEvent: {fileID: 11400000, guid: 2d70689cea35e63419875d8f58750c78, type: 2}
+  _activitySelectedEvent: {fileID: 0}
 --- !u!114 &2092246192
 MonoBehaviour:
   m_ObjectHideFlags: 0

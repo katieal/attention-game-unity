@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SchoolCafeteria
   m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Locations.LocationSO
   Place: 1
-  Room: 0
+  RoomName: 64
   Activities: 108
+  ConnectedRooms: 56

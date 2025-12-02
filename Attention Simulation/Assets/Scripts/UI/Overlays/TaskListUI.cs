@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
+using RoomInfo = Emyra.FocusGame.Locations.RoomInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -79,7 +79,7 @@ namespace Emyra.FocusGame.UI
             _scheduleIndex = -1;
         }
 
-        private void OnLocationChanged(LocationInfo info)
+        private void OnLocationChanged(RoomInfo info)
         {
             // if in school and location is the next one in school schedule
             if ((info.Place == Place.School) && (info.SubjectName == ScheduleData.SubjectDataList[_scheduleIndex + 1].Name))

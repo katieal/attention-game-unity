@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
-using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
+using RoomInfo = Emyra.FocusGame.Locations.RoomInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -28,13 +28,13 @@ namespace Emyra.FocusGame.UI
             _locationChangedEvent.OnInvokeEvent -= OnLocationChanged;
         }
 
-        private void OnLocationChanged(LocationInfo info)
+        private void OnLocationChanged(RoomInfo info)
         {
             // assign bg image if possible
             if (_spriteLibrary.spriteLibraryAsset.GetCategoryNames().Contains(info.Place.ToString()))
             {
                 string label;
-                if (info.Room == Room.Classroom) { label = info.SubjectName; }
+                if (info.Room == RoomName.Classroom) { label = info.SubjectName; }
                 else { label = info.Room.ToString(); }
 
                 if (_spriteLibrary.spriteLibraryAsset.GetCategoryLabelNames(info.Place.ToString()).Contains(label))

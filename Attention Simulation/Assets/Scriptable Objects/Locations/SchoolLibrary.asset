@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba2e81c5a8cbefb4b928ed5387a52871, type: 3}
-  m_Name: BedroomAfternoon
-  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.GameData.LocationSO
-  Place: 0
-  RoomName: 1
-  Activities: 732
-  ConnectedRooms: 14
+  m_Name: SchoolLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::Emyra.FocusGame.Locations.LocationSO
+  Place: 1
+  RoomName: 32
+  Activities: 524
+  ConnectedRooms: 88

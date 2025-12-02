@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LocationInfo = Emyra.FocusGame.Locations.LocationInfo;
+using RoomInfo = Emyra.FocusGame.Locations.RoomInfo;
 
 namespace Emyra.FocusGame.UI
 {
@@ -24,10 +24,13 @@ namespace Emyra.FocusGame.UI
         [SerializeField] private LocationInfoEventSO _locationChangedEvent;
         [FoldoutGroup("Events/Invoked Events")]
         [SerializeField] private VoidEventSO _startGameEvent; // temp (debug only)
-        [SerializeField] private ActivityIntEventSO _activitySelectedEvent;
+        [SerializeField] private ActivityInfoEventSO _activitySelectedEvent;
 
 
         private Dictionary<ActivityName, Button> _buttonDict;
+        private List<Button> _roomButtonList;
+        private VisualElement _roomButtonsElement;
+
         // var for readability
         private ActivityDatabase _activityDb;
 
@@ -41,6 +44,8 @@ namespace Emyra.FocusGame.UI
             #endregion
 
             _buttonDict = new Dictionary<ActivityName, Button>();
+
+            _roomButtonsElement = ControlsDocument.rootVisualElement.Q("room-buttons");
         }
 
         private void OnEnable()
@@ -51,9 +56,9 @@ namespace Emyra.FocusGame.UI
 
             _activityDb = ActivityDatabase.Instance;
 
-            
-            // bind activity button callbacks
-            InitButtons();
+            // bind buttons and callbacks
+            InitActivityButtons();
+            InitRoomButtons();
 
             // subscribe to events
             _locationChangedEvent.OnInvokeEvent += OnLocationChanged;
@@ -80,7 +85,7 @@ namespace Emyra.FocusGame.UI
             if (_durationPopup.enabled) { _durationPopup.Close(); }
         }
 
-        private void InitButtons()
+        private void InitActivityButtons()
         {
             _buttonDict.Clear();
 
@@ -95,10 +100,28 @@ namespace Emyra.FocusGame.UI
                 if (ele != null)
                 {
                     Button button = ele as Button;
-                    button.RegisterCallback<ClickEvent, ActivityName>(OnActivityClicked, activity);
+                    //if (activity != ActivityName.Move)
+                    //{
+                        // callback for move button is registered when location changes
+                        button.RegisterCallback<ClickEvent, ActivityName>(OnActivityClicked, activity);
+                    //}
+
                     _buttonDict.Add(activity, button);
                 }
             }
+        }
+
+        private void InitRoomButtons()
+        {
+            _roomButtonList = new List<Button>();
+
+            foreach (VisualElement ele in _roomButtonsElement.Children())
+            {
+                _roomButtonList.Add(ele as Button);
+            }
+
+            // hide room options at start
+            ShowRoomButtonBar(false);
         }
 
         #region Debug
@@ -111,8 +134,10 @@ namespace Emyra.FocusGame.UI
         }
         #endregion
 
-        private void OnLocationChanged(LocationInfo info)
+        private void OnLocationChanged(RoomInfo info)
         {
+            ClearRoomButtonCallbacks();
+
             // update activity buttons shown
             foreach (ActivityName activity in _buttonDict.Keys)
             {
@@ -124,6 +149,12 @@ namespace Emyra.FocusGame.UI
                     {
                         _buttonDict[activity].SetEnabled(true);
                         _buttonDict[activity].style.display = DisplayStyle.Flex;
+                    }
+
+                    // set move button text and callbacks
+                    if (activity == ActivityName.Move)
+                    {
+                        SetRoomButtons(info.ConnectedRooms);
                     }
                 }
                 else
@@ -138,11 +169,15 @@ namespace Emyra.FocusGame.UI
         #region Activity Buttons
         private void OnActivityClicked(ClickEvent evt, ActivityName activity)
         {
+            if (activity == ActivityName.Move)
+            {
+                ShowRoomButtonBar(true);
+            }
             // if activity has a fixed duration, execute it on click
-            if (_activityDb.CheckDuration(activity))
+            else if (_activityDb.CheckDuration(activity))
             {
                 // send -1 for default duration
-                _activitySelectedEvent.InvokeEvent(activity, -1);
+                _activitySelectedEvent.InvokeEvent(GetActivityInfo(activity));
             }
             else
             {
@@ -155,10 +190,76 @@ namespace Emyra.FocusGame.UI
         private void SendActivityWithDuration(int minutes, ActivityName activity)
         {
             // send event
-            _activitySelectedEvent.InvokeEvent(activity, minutes);
+            _activitySelectedEvent.InvokeEvent(GetActivityInfo(activity, minutes));
             // close popup
             _durationPopup.Close();
         }
         #endregion
+
+        #region Room Buttons
+        private void ShowRoomButtonBar(bool isVisible)
+        {
+            _roomButtonsElement.SetEnabled(isVisible);
+            _roomButtonsElement.visible = isVisible;
+        }
+
+        private void SetRoomButtons(RoomName roomMask)
+        {
+            // current index in room buttons list
+            int buttonIndex = 0;
+
+            foreach (RoomName room in Enum.GetValues(typeof(RoomName)))
+            {
+                // check if bitmask has this room name
+                if ((room & roomMask) == room)
+                {
+                    // set button text and add callback
+                    _roomButtonList[buttonIndex].text = GetRoomString(room);
+                    _roomButtonList[buttonIndex].RegisterCallback<ClickEvent, RoomName>(OnRoomButtonClicked, room);
+                }
+            }
+        }
+
+        private void ClearRoomButtonCallbacks()
+        {
+            foreach (Button button in _roomButtonList)
+            {
+                button.UnregisterCallback<ClickEvent, RoomName>(OnRoomButtonClicked);
+            }
+        }
+
+        private void OnRoomButtonClicked(ClickEvent evt, RoomName room)
+        {
+            _activitySelectedEvent.InvokeEvent(GetActivityInfo(ActivityName.Move, nextRoom: room));
+        }
+
+        private string GetRoomString(RoomName room)
+        {
+            switch (room)
+            {
+                case RoomName.Classroom: return "Next Class";
+                case RoomName.SchoolLibrary: return "School Library";
+                default: return room.ToString();
+            }
+        }
+        #endregion
+
+        private SelectedActivityInfo GetActivityInfo(ActivityName activity, int duration = -1, RoomName nextRoom = RoomName.None)
+        {
+            return new SelectedActivityInfo()
+            {
+                SelectedActivity = activity,
+                Duration = duration,
+                NextRoom = nextRoom
+            };
+        }
+    }
+
+
+    public struct SelectedActivityInfo
+    {
+        public ActivityName SelectedActivity;
+        public int Duration;
+        public RoomName NextRoom;
     }
 }
